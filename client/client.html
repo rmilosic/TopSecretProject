@@ -1,0 +1,124 @@
+
+<template name="layout">
+	<!-- Find alternative in meteor, instead of calling link font-awesome. -->
+	<head><link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"></head>
+	<header id="topheader" role="banner">
+		<div class="row">
+			<div class="large-12 columns text-center">
+				<a href="{{ pathFor 'home' }}"><h1 class="white">hatChat</h1></a>
+			</div>
+		</div>
+	</header>
+
+	<div class="row fullWidth">
+		<div id="navbar" class="large-3 columns" >
+			<nav role="navigation">
+				<!-- side bar -->
+				{{> groupsNavigation}}
+			</nav>
+		</div>
+
+		<div id="chatbox" class="large-6 columns">
+			<header>
+				<h2> 
+					{{getTitle}}
+				</h2>
+			</header>
+			<main>
+				<div id="chatwindow">
+					{{> yield}}
+				</div>
+			</main>
+		</div>
+
+		<div id="chatinfo" class="large-3 left  columns">
+			{{> loginButtons}}
+			<h3><i class="fa fa-info-circle fa-2x"></i> About</h3>
+			<p> This is my group </p>
+
+			<h3><i class="fa fa-tags fa-2x"></i> Tags</h3>
+			<ul>
+				<li><span class="label">Bullshit</span></li>
+				<li><span class="label">Party</span></li>
+			</ul>	
+
+			<br>
+
+			<h4><i class="fa fa-user"></i> People in this group</h4>
+			<ul>
+				<li>Human</li>
+				<li>Robot</li>
+				<li>Alien</li>
+				<li><em>view more</em></li>
+			</ul>
+		</div>
+	</div>
+</template>
+
+<template name="groupsNavigation">
+	<h3><i class="fa fa-users"></i> My groups</h3>
+	{{#each groups}}
+	<li><a href="{{ pathFor 'group' _id=this._id }}"><strong>{{groupName}}</strong></a></li>
+	{{/each}}
+
+	<div class="createNewGroupDiv">
+		<div class="groupInputLabel">
+			<i id="newGroupIcon" class="fa fa-plus"></i> <strong id="newGroupLabel"> Create a new group </strong>
+		</div>
+		<div class="groupInputTextBox input-grpu margin-bottom-sm hidden">
+			<span class="input-group-addon"></span>
+			<input id="groupInput" type="text" placeholder="Type new group name .." autofocus="true"> 
+		</div>	
+	</div>
+
+	<h3><i class="fa fa-user"></i> Users</h3>
+	{{#each users}}
+	<li><h6>Anonymous{{user_id}}</h6></li>
+	{{/each}}
+
+	<div class="input-group margin-bottom-sm">
+		<span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
+		<input  type="text" placeholder="Search for groups and people"> 
+	</div>
+</template>
+
+<template name="group">
+	<!--<div class="msgBox" style="position: relative; overflow-y: scroll; overflow-x: hidden; height: 500px; width: 600px;">
+-->
+<div class="msgBox" style="position: relative; overflow-y: scroll; overflow-x: hidden; height: inherit;">
+	{{> loadMore}}
+	{{> list }}
+</div>
+
+{{> input }}
+</template>
+
+<template name="loadMore">
+	<div id="setToCenter" style="text-align: center">
+		{{#if haveMore }}
+		<a href="">Load more ({{ count }}) ...</a>
+		{{/if}}
+	</div>
+</template>
+
+<template name="list">
+	{{#each messages}}
+	<li><small><var>{{time}}</var></small><strong> {{name}}:</strong> {{> msg}}</li>
+	{{/each}}
+</template>
+
+<template name="msg">
+	{{ message }}
+</template>
+
+<template name="input">
+	<div class="row" id="chatinput">
+		<div class="large-12 columns bottom">
+			<input id="message" type="text" class="form-control" placeholder="Enter your message..">
+		</div>
+	</div>
+</template>
+
+<template name="home">
+	This is home view.
+</template>
