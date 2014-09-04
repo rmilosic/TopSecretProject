@@ -8941,34 +8941,86 @@ li {
   list-style-type: none;
 }
 
-/* line 7, ../../../scss/_custom.scss */
+/* line 8, ../../../scss/_custom.scss */
+.user-active {
+  font-size: 1rem;
+  color: #43ac6a;
+  float: left;
+  padding-right: 0.2rem;
+}
+
+/* line 14, ../../../scss/_custom.scss */
+.user-offline {
+  font-size: 1rem;
+  float: left;
+  padding-right: 0.2rem;
+}
+
+/* line 20, ../../../scss/_custom.scss */
 ul {
   margin: 0;
 }
 
-/* line 12, ../../../scss/_custom.scss */
+/* line 25, ../../../scss/_custom.scss */
 #topheader h1 {
   font-family: 'Lato', sans-serif;
 }
 
-/* line 17, ../../../scss/_custom.scss */
+/* line 30, ../../../scss/_custom.scss */
 #navbar {
   padding-top: 1rem;
 }
 
-/* line 21, ../../../scss/_custom.scss */
+/* line 34, ../../../scss/_custom.scss */
+.close-button {
+  position: absolute;
+  top: 0.3rem;
+  right: 0.3rem;
+  font-size: 1.0rem;
+  font-family: helvetica;
+  color: tray;
+  display: none;
+}
+
+/* line 44, ../../../scss/_custom.scss */
+.notification {
+  position: absolute;
+  color: #008cba;
+  top: 0.7rem;
+  left: 0.4rem;
+  display: none;
+  font-size: 1.3rem;
+}
+
+/* line 53, ../../../scss/_custom.scss */
+.tabs
+dd {
+  position: relative;
+}
+
+/* line 57, ../../../scss/_custom.scss */
+dd:hover .close-button {
+  display: block;
+}
+
+/* line 60, ../../../scss/_custom.scss */
+dd:hover .notification {
+  display: block;
+}
+
+/* line 65, ../../../scss/_custom.scss */
 #chatbox {
   margin-bottom: 0.5rem;
   background-color: #FFF;
   position: relative;
   box-shadow: 0 0 0.07rem #383931;
 }
-/* line 26, ../../../scss/_custom.scss */
+/* line 70, ../../../scss/_custom.scss */
 #chatbox #chatwindow {
   height: 40rem;
   padding: 1rem 0.5rem 1rem 0.5rem;
 }
-/* line 30, ../../../scss/_custom.scss */
+/* line 74, ../../../scss/_custom.scss */
 #chatbox header {
   padding-top: 1rem;
   height: 5rem;
@@ -8976,14 +9028,14 @@ ul {
   box-shadow-bottom: 0rem -0.5rem 0.3rem #383931;
 }
 
-/* line 41, ../../../scss/_custom.scss */
+/* line 85, ../../../scss/_custom.scss */
 #chatinfo {
   margin-top: 1.5rem;
+  padding-top: 1rem;
   padding-left: 1.5rem;
-  padding-top: 4rem;
 }
 
-/* line 46, ../../../scss/_custom.scss */
+/* line 91, ../../../scss/_custom.scss */
 .fullWidth {
   width: 100%;
   margin-left: auto;
@@ -8991,7 +9043,7 @@ ul {
   max-width: initial;
 }
 
-/* line 53, ../../../scss/_custom.scss */
+/* line 98, ../../../scss/_custom.scss */
 footer {
   background-color: #3c3e3c;
   height: 10rem;
