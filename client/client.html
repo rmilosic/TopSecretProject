@@ -21,14 +21,10 @@
 		<div id="chatbox" class="large-7 columns">
 			<dl class="tabs" data-tab>
 				{{#each tabs}}
-					<dd data-id="{{tabId}}"><a href="{{ pathFor 'group' _id=tabId }}">{{tabName}}</a></dd>
+				<dd data-id="{{tabId}}"><a href="{{ pathFor 'group' _id=tabId }}">{{tabName}}</a></dd>
 				{{/each}}
 			</dl>
-			<header>
-				<h2> 
-					{{getTitle}}
-				</h2>
-			</header>
+			
 			<main>
 				<div id="chatwindow">
 					{{> yield}}
@@ -49,13 +45,13 @@
 
 			<br>
 
-			<h4><i class="fa fa-user"></i> People in this group</h4>
+			<h3><i class="fa fa-user"></i>People</h3>
 			<ul>
-				<li>Human</li>
-				<li>Robot</li>
-				<li>Alien</li>
-				<li><em>view more</em></li>
+				{{#each users}}
+				<li><h6>Anonymous{{userId}}</h6></li>
+				{{/each}}
 			</ul>
+
 		</div>
 	</div>
 </template>
@@ -76,14 +72,9 @@
 		</div>	
 	</div>
 
-	<h3><i class="fa fa-user"></i> Users</h3>
-	{{#each users}}
-	<li><h6>Anonymous{{userId}}</h6></li>
-	{{/each}}
-
 	<div class="input-group margin-bottom-sm">
 		<span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
-		<input  type="text" placeholder="Search for groups and people"> 
+		<input  type="text" placeholder="Search groups"> 
 	</div>
 </template>
 

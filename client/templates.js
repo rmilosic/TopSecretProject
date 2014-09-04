@@ -2,8 +2,6 @@
 * Templates
 */
 
-Template.chatWindow
-
 Template.layout.getTitle = function() {
 	return Session.get('currentTitle');
 }
@@ -78,7 +76,7 @@ Template.loadMore.haveMore = function() {
 	cursor.forEach(function(first){
 		count = first.numberOfMsgs;
 	});
-	if((count-(Session.get('current_page')*50)<=0) || count == undefined)
+	if((count-(Session.get('currentPage')*50)<=0) || count == undefined || count == NaN)
 		return false;
 	else
 		return true;
@@ -90,7 +88,7 @@ Template.loadMore.count = function() {
 	cursor.forEach(function(first){
 		count = first.numberOfMsgs;
 	});
-	return (count-(Session.get('current_page')*50));
+	return (count-(Session.get('currentPage')*50));
 }
 
 Template.loadMore.rendered = function() {
@@ -124,7 +122,7 @@ Template.groupsNavigation.groups = function() {
 	return Groups.find({}, {sort: {last_used: -1}}); 
 }
 
-Template.groupsNavigation.users = function() {
+Template.layout.users = function() {
 	return Connections.find({});
 }
 

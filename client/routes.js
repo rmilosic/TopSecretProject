@@ -9,7 +9,7 @@
 	Router.map( function () {
 		this.route('group', {
 			path: 'groups/:_id',
-		onRun: function() { // This function is called everytime something refreshes on current page. Replace with function that is run only the first time.
+		onAfterAction: function() { // This function is called everytime something refreshes on current page. Replace with function that is run only the first time.
 
 
 			var groupCursor = Groups.find(this.params._id);
@@ -39,6 +39,7 @@
 
 			$(".tabs .active").removeClass("active");
 			var searchActiveTabString = "dd[data-id="+this.params._id+"]";
+			console.log(searchActiveTabString);
 			$(searchActiveTabString).addClass("active");
 
 			// its too smooth, change or jquery for fade effect
