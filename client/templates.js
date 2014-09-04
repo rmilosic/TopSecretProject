@@ -2,11 +2,13 @@
 * Templates
 */
 
+Template.chatWindow
+
 Template.layout.getTitle = function() {
-	return Session.get('current_title');
+	return Session.get('currentTitle');
 }
 Template.layout.getGroup = function() {
-	var tmp = Groups.findOne(Session.get('current_room'));
+	var tmp = Groups.findOne(Session.get('currentRoom'));
 	return tmp;
 }
 
@@ -32,8 +34,8 @@ Template.layout.events = {
 }
 
 Template.list.messages = function() {
-	var pages = Session.get('current_page');
-	var cursor = Groups.find({_id: Session.get('current_room')});
+	var pages = Session.get('CurrentPage');
+	var cursor = Groups.find({_id: Session.get('currentRoom')});
 	var count = 0;
 	var groupsArray = 0;
 	cursor.forEach(function(first){
@@ -59,7 +61,7 @@ Template.msg.rendered = function() {
 	var scrollBar = $('.msgBox').scrollTop();
 	var scrollHeight = $('.msgBox').prop('scrollHeight');
 	var el = $('.msgBox').height();
-	var cursor = Groups.find({_id: Session.get('current_room')});
+	var cursor = Groups.find({_id: Session.get('currentRoom')});
 	var count = 0;
 	cursor.forEach(function(first){
 		count = first.numberOfMsgs;
@@ -71,7 +73,7 @@ Template.msg.rendered = function() {
 }
 
 Template.loadMore.haveMore = function() {
-	var cursor = Groups.find({_id: Session.get('current_room')});
+	var cursor = Groups.find({_id: Session.get('currentRoom')});
 	var count = 0;
 	cursor.forEach(function(first){
 		count = first.numberOfMsgs;
@@ -83,7 +85,7 @@ Template.loadMore.haveMore = function() {
 }
 
 Template.loadMore.count = function() {
-	var cursor = Groups.find({_id: Session.get('current_room')});
+	var cursor = Groups.find({_id: Session.get('currentRoom')});
 	var count = 0;
 	cursor.forEach(function(first){
 		count = first.numberOfMsgs;
@@ -97,8 +99,8 @@ Template.loadMore.rendered = function() {
 
 Template.loadMore.events = {
 	'click': function(event) {
-		var tmp = Session.get('current_page')+1;
-		Session.setTemporary('current_page',tmp);
+		var tmp = Session.get('currentPage')+1;
+		Session.setTemporary('currentRoom',tmp);
 
 		/*var scrollBar = $('.msgBox').scrollTop();
 		var scrollHeight = $('.msgBox').prop('scrollHeight');
@@ -113,12 +115,13 @@ Template.loadMore.events = {
 	}
 }
 
-Template.groupsNavigation.groups = function() {
-	return Groups.find({}, {sort: {last_used: -1}}); 
+Template.layout.tabs = function () {
+	return Session.get('currentTabs');
+	//return CurrentTabs.find({})M
 }
 
-Template.groupsNavigation.isCreateNewGroupFalse = function() {
-	return Session.get('create_new_group') ? false : true; 
+Template.groupsNavigation.groups = function() {
+	return Groups.find({}, {sort: {last_used: -1}}); 
 }
 
 Template.groupsNavigation.users = function() {
@@ -165,7 +168,7 @@ Template.input.events = {
 				var name = Meteor.user().profile.name;
 			else
 			{
-				var name= 'Anonymous' + Session.get('current_user');
+				var name= 'Anonymous' + Session.get('currentUser');
 				anonUser=1;
 			}
 			var message = document.getElementById('message');
@@ -180,7 +183,7 @@ Template.input.events = {
 			//timeString  += (hours >= 12) ? " p.m." : " a.m.";
 
 			if(message.value != '') {
-				Groups.update({_id: Session.get('current_room')} , { $push: {groupMsgs: {name: name, message: message.value, time: timeString }}, $inc: { numberOfMsgs: 1} });
+				Groups.update({_id: Session.get('currentRoom')} , { $push: {groupMsgs: {name: name, message: message.value, time: timeString }}, $inc: { numberOfMsgs: 1} });
 				document.getElementById('message').value= '';
 				message.value = '';	
 			} 
