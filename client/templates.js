@@ -21,13 +21,13 @@ Template.layout.isHomeView = function() {
 Template.layout.events = {
 	'click': function(e) {
 		var container = $(".createNewGroupDiv");
-    	if (!container.is(e.target) && container.has(e.target).length === 0) {
-    		var createNewGroupLabel = $(".groupInputLabel");
+		if (!container.is(e.target) && container.has(e.target).length === 0) {
+			var createNewGroupLabel = $(".groupInputLabel");
 			createNewGroupLabel.removeClass("hidden");
 
 			var createNewGroupInput = $(".groupInputTextBox");
 			createNewGroupInput.addClass("hidden");
-    	}
+		}
 	}
 }
 
@@ -145,13 +145,32 @@ Template.groupsNavigation.events = {
 		}
 	},
 	'click .createNewGroupDiv' : function (event) {
-		//Session.setTemporary('create_new_group', true);
 		var createNewGroupLabel = $(".groupInputLabel");
 		createNewGroupLabel.addClass("hidden");
 
 		var createNewGroupInput = $(".groupInputTextBox");
 		createNewGroupInput.removeClass("hidden");
 
+	}
+}
+
+Template.closeButton.events = {
+	'click' : function(event) {
+		var currentTabs = Session.get('currentTabs');
+		var len = currentTabs.length;
+		for (var i=0; i<len; ++i) {
+			if (i in currentTabs) {
+				var s = currentTabs[i];
+				if(s.tabId == $(event.target).parent().parent().parent().attr('data-id')) {
+					currentTabs.splice(i,1);
+				}
+			}
+		}
+		Session.set('currentTabs',currentTabs);
+		if($(event.target).parent().parent().parent().attr('data-id') == Session.get('currentRoom')) {
+			Router.go('home');
+		}
+		event.preventDefault();
 	}
 }
 
