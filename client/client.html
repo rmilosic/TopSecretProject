@@ -11,14 +11,14 @@
 	</header>
 
 	<div class="row fullWidth">
-		<div id="navbar" class="large-3 columns" >
+		<div id="navbar" class="large-2 columns" >
 			<nav role="navigation">
 				<!-- side bar -->
 				{{> groupsNavigation}}
 			</nav>
 		</div>
 
-		<div id="chatbox" class="large-6 columns">
+		<div id="chatbox" class="large-7 columns">
 			<dl class="tabs" data-tab>
 				{{#each tabs}}
 					<dd data-id="{{tabId}}"><a href="{{ pathFor 'group' _id=tabId }}">{{tabName}}</a></dd>
