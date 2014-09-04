@@ -21,7 +21,14 @@
 		<div id="chatbox" class="large-7 columns">
 			<dl class="tabs" data-tab>
 				{{#each tabs}}
-					<dd data-id="{{tabId}}"><a href="{{ pathFor 'group' _id=tabId }}">{{tabName}}</a></dd>
+					<dd data-id="{{tabId}}">
+						<div class="close-button">
+							<a href=""><i class="fa fa-times"></i></a>
+						</div>
+						<div class="notification">
+							<i class="fa fa-exclamation-circle"></i>
+						</div>
+						<a href="{{ pathFor 'group' _id=tabId }}">{{tabName}}</a>  </dd>
 				{{/each}}
 			</dl>
 			<header>
@@ -50,9 +57,9 @@
 			<br>
 
 			<h4><i class="fa fa-user"></i> People in this group</h4>
-			<ul>
-				<li>Human</li>
-				<li>Robot</li>
+			<ul class="user-list">
+				<li><div class="user-active"><i class="fa fa-circle"></i></div>Human</li>
+				<li><div class="user-offline"><i class="fa fa-circle"></i></div>Robot</li>
 				<li>Alien</li>
 				<li><em>view more</em></li>
 			</ul>
