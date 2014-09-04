@@ -19,6 +19,11 @@
 		</div>
 
 		<div id="chatbox" class="large-6 columns">
+			<dl class="tabs" data-tab>
+				{{#each tabs}}
+					<dd data-id="{{tabId}}"><a href="{{ pathFor 'group' _id=tabId }}">{{tabName}}</a></dd>
+				{{/each}}
+			</dl>
 			<header>
 				<h2> 
 					{{getTitle}}
@@ -73,7 +78,7 @@
 
 	<h3><i class="fa fa-user"></i> Users</h3>
 	{{#each users}}
-	<li><h6>Anonymous{{user_id}}</h6></li>
+	<li><h6>Anonymous{{userId}}</h6></li>
 	{{/each}}
 
 	<div class="input-group margin-bottom-sm">

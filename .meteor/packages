@@ -5,10 +5,9 @@
 
 standard-app-packages
 insecure
-grounddb
-iron-router
-persistent-session
-fontawesome4
+cmather:iron-router@0.8.2
+u2622:persistent-session@0.1.4
+chrismbeckett:fontawesome4@1.1.0
 accounts-facebook
 accounts-google
 accounts-twitter
