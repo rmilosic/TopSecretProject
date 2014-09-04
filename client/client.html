@@ -21,9 +21,7 @@
 		<div id="chatbox" class="large-7 columns">
 			<dl class="tabs" data-tab>
 				{{#each tabs}}
-<<<<<<< HEAD
 				<dd data-id="{{tabId}}"><a href="{{ pathFor 'group' _id=tabId }}">{{tabName}}</a></dd>
-=======
 					<dd data-id="{{tabId}}">
 						<div class="close-button">
 							<a href=""><i class="fa fa-times"></i></a>
@@ -32,7 +30,6 @@
 							<i class="fa fa-exclamation-circle"></i>
 						</div>
 						<a href="{{ pathFor 'group' _id=tabId }}">{{tabName}}</a>  </dd>
->>>>>>> 338a7b4b0c95f5ddcfe715a02921a812c2ece449
 				{{/each}}
 			</dl>
 			
@@ -56,20 +53,17 @@
 
 			<br>
 
-<<<<<<< HEAD
 			<h3><i class="fa fa-user"></i>People</h3>
 			<ul>
 				{{#each users}}
 				<li><h6>Anonymous{{userId}}</h6></li>
 				{{/each}}
-=======
 			<h4><i class="fa fa-user"></i> People in this group</h4>
 			<ul class="user-list">
 				<li><div class="user-active"><i class="fa fa-circle"></i></div>Human</li>
 				<li><div class="user-offline"><i class="fa fa-circle"></i></div>Robot</li>
 				<li>Alien</li>
 				<li><em>view more</em></li>
->>>>>>> 338a7b4b0c95f5ddcfe715a02921a812c2ece449
 			</ul>
 
 		</div>
