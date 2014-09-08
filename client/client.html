@@ -18,10 +18,12 @@
 			</nav>
 		</div>
 
+		{{debug}}
 		<div id="chatbox" class="large-7 columns">
+			{{#if isNotHomeView}}
 			<dl class="tabs" data-tab>
 				{{#each tabs}}
-				<dd data-id="{{tabId}}">
+				<dd class="" data-id="{{tabId}}">
 					{{> closeButton}}
 					<a href="{{ pathFor 'group' _id=tabId }}">
 						<div class="notification">
@@ -32,6 +34,7 @@
 				</dd>
 				{{/each}}
 			</dl>
+			{{/if}}
 
 			<main>
 				<div id="chatwindow">

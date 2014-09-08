@@ -10,12 +10,8 @@ Template.layout.getGroup = function() {
 	return tmp;
 }
 
-Template.layout.getHome = function() {
-	return "Home";
-}
-
-Template.layout.isHomeView = function() {
-	Router.current().path == '/' ? true : false;
+Template.layout.isNotHomeView = function() {
+	return Router.current().path != '/' ? true : false;
 }
 
 Template.layout.events = {
@@ -32,7 +28,7 @@ Template.layout.events = {
 }
 
 Template.list.messages = function() {
-	var pages = Session.get('CurrentPage');
+	var pages = Session.get('currentPage');
 	var cursor = Groups.find({_id: Session.get('currentRoom')});
 	var count = 0;
 	var groupsArray = 0;
@@ -115,7 +111,6 @@ Template.loadMore.events = {
 
 Template.layout.tabs = function () {
 	return Session.get('currentTabs');
-	//return CurrentTabs.find({})M
 }
 
 Template.groupsNavigation.groups = function() {
@@ -156,6 +151,7 @@ Template.groupsNavigation.events = {
 
 Template.closeButton.events = {
 	'click' : function(event) {
+		var removedTab = -1;
 		var currentTabs = Session.get('currentTabs');
 		var len = currentTabs.length;
 		for (var i=0; i<len; ++i) {
@@ -163,12 +159,17 @@ Template.closeButton.events = {
 				var s = currentTabs[i];
 				if(s.tabId == $(event.target).parent().parent().parent().attr('data-id')) {
 					currentTabs.splice(i,1);
+					removedTab = i;
 				}
 			}
 		}
 		Session.set('currentTabs',currentTabs);
 		if($(event.target).parent().parent().parent().attr('data-id') == Session.get('currentRoom')) {
-			Router.go('home');
+			if(removedTab!=-1) {
+				console.log("redirecting to: groups/"+currentTabs[removedTab].tabId);
+				$('.tabs .active').removeClass('active');
+				Router.go('group',{_id: currentTabs[removedTab].tabId});
+			}
 		}
 		event.preventDefault();
 	}
