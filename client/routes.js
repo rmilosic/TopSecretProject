@@ -46,7 +46,7 @@
 					$('.tabs .active').removeClass('active');
 					var searchActiveTabString = "dd[data-id="+that.params._id+"]";
 					$(searchActiveTabString).addClass('active');
-				},50);
+				},200);
 
 				// its too smooth, change or jquery for fade effect
 				//var timeNow = new Date();

@@ -164,6 +164,7 @@ Template.closeButton.events = {
 			}
 		}
 		Session.set('currentTabs',currentTabs);
+		console.log("hello");
 		if($(event.target).parent().parent().parent().attr('data-id') == Session.get('currentRoom')) {
 			if(removedTab!=-1) {
 				console.log("redirecting to: groups/"+currentTabs[removedTab].tabId);
