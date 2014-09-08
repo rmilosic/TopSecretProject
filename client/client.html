@@ -18,24 +18,24 @@
 			</nav>
 		</div>
 
+		{{debug}}
 		<div id="chatbox" class="large-7 columns">
+			{{#if isNotHomeView}}
 			<dl class="tabs" data-tab>
 				{{#each tabs}}
-					<dd data-id="{{tabId}}">
-						<div class="close-button">
-							<a href=""><i class="fa fa-times"></i></a>
-						</div>
+				<dd class="" data-id="{{tabId}}">
+					{{> closeButton}}
+					<a href="{{ pathFor 'group' _id=tabId }}">
 						<div class="notification">
 							<i class="fa fa-exclamation-circle"></i>
 						</div>
-						<a href="{{ pathFor 'group' _id=tabId }}">{{tabName}}</a>  </dd>
+						{{tabName}}
+					</a>  
+				</dd>
 				{{/each}}
 			</dl>
-			<header>
-				<h2> 
-					{{getTitle}}
-				</h2>
-			</header>
+			{{/if}}
+
 			<main>
 				<div id="chatwindow">
 					{{> yield}}
@@ -46,7 +46,7 @@
 		<div id="chatinfo" class="large-3 left  columns">
 			{{> loginButtons}}
 			<h3><i class="fa fa-info-circle fa-2x"></i> About</h3>
-			<p> This is my group </p>
+			<p> This is my group.</p>
 
 			<h3><i class="fa fa-tags fa-2x"></i> Tags</h3>
 			<ul>
@@ -56,14 +56,19 @@
 
 			<br>
 
-			<h4><i class="fa fa-user"></i> People in this group</h4>
+			<h3><i class="fa fa-user"></i>People</h3>
 			<ul class="user-list">
-				<li><div class="user-active"><i class="fa fa-circle"></i></div>Human</li>
-				<li><div class="user-offline"><i class="fa fa-circle"></i></div>Robot</li>
-				<li>Alien</li>
-				<li><em>view more</em></li>
+				{{#each users}} <!-- user-active class for active users and user-offline for offline user -->
+				<li><div class="user-active"><i class="fa fa-circle"></i></div>Anonymous{{userId}}</li>
+				{{/each}}
 			</ul>
 		</div>
+	</div>
+</template>
+
+<template name="closeButton">
+	<div class="close-button">
+		<a href=""><i class="fa fa-times"></i></a>
 	</div>
 </template>
 
@@ -83,14 +88,9 @@
 		</div>	
 	</div>
 
-	<h3><i class="fa fa-user"></i> Users</h3>
-	{{#each users}}
-	<li><h6>Anonymous{{userId}}</h6></li>
-	{{/each}}
-
 	<div class="input-group margin-bottom-sm">
 		<span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
-		<input  type="text" placeholder="Search for groups and people"> 
+		<input  type="text" placeholder="Search groups"> 
 	</div>
 </template>
 

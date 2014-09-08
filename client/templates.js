@@ -2,8 +2,6 @@
 * Templates
 */
 
-Template.chatWindow
-
 Template.layout.getTitle = function() {
 	return Session.get('currentTitle');
 }
@@ -12,29 +10,25 @@ Template.layout.getGroup = function() {
 	return tmp;
 }
 
-Template.layout.getHome = function() {
-	return "Home";
-}
-
-Template.layout.isHomeView = function() {
-	Router.current().path == '/' ? true : false;
+Template.layout.isNotHomeView = function() {
+	return Router.current().path != '/' ? true : false;
 }
 
 Template.layout.events = {
 	'click': function(e) {
 		var container = $(".createNewGroupDiv");
-    	if (!container.is(e.target) && container.has(e.target).length === 0) {
-    		var createNewGroupLabel = $(".groupInputLabel");
+		if (!container.is(e.target) && container.has(e.target).length === 0) {
+			var createNewGroupLabel = $(".groupInputLabel");
 			createNewGroupLabel.removeClass("hidden");
 
 			var createNewGroupInput = $(".groupInputTextBox");
 			createNewGroupInput.addClass("hidden");
-    	}
+		}
 	}
 }
 
 Template.list.messages = function() {
-	var pages = Session.get('CurrentPage');
+	var pages = Session.get('currentPage');
 	var cursor = Groups.find({_id: Session.get('currentRoom')});
 	var count = 0;
 	var groupsArray = 0;
@@ -78,7 +72,7 @@ Template.loadMore.haveMore = function() {
 	cursor.forEach(function(first){
 		count = first.numberOfMsgs;
 	});
-	if((count-(Session.get('current_page')*50)<=0) || count == undefined)
+	if((count-(Session.get('currentPage')*50)<=0) || count == undefined || count == NaN)
 		return false;
 	else
 		return true;
@@ -90,7 +84,7 @@ Template.loadMore.count = function() {
 	cursor.forEach(function(first){
 		count = first.numberOfMsgs;
 	});
-	return (count-(Session.get('current_page')*50));
+	return (count-(Session.get('currentPage')*50));
 }
 
 Template.loadMore.rendered = function() {
@@ -117,14 +111,13 @@ Template.loadMore.events = {
 
 Template.layout.tabs = function () {
 	return Session.get('currentTabs');
-	//return CurrentTabs.find({})M
 }
 
 Template.groupsNavigation.groups = function() {
 	return Groups.find({}, {sort: {last_used: -1}}); 
 }
 
-Template.groupsNavigation.users = function() {
+Template.layout.users = function() {
 	return Connections.find({});
 }
 
@@ -147,13 +140,38 @@ Template.groupsNavigation.events = {
 		}
 	},
 	'click .createNewGroupDiv' : function (event) {
-		//Session.setTemporary('create_new_group', true);
 		var createNewGroupLabel = $(".groupInputLabel");
 		createNewGroupLabel.addClass("hidden");
 
 		var createNewGroupInput = $(".groupInputTextBox");
 		createNewGroupInput.removeClass("hidden");
 
+	}
+}
+
+Template.closeButton.events = {
+	'click' : function(event) {
+		var removedTab = -1;
+		var currentTabs = Session.get('currentTabs');
+		var len = currentTabs.length;
+		for (var i=0; i<len; ++i) {
+			if (i in currentTabs) {
+				var s = currentTabs[i];
+				if(s.tabId == $(event.target).parent().parent().parent().attr('data-id')) {
+					currentTabs.splice(i,1);
+					removedTab = i;
+				}
+			}
+		}
+		Session.set('currentTabs',currentTabs);
+		if($(event.target).parent().parent().parent().attr('data-id') == Session.get('currentRoom')) {
+			if(removedTab!=-1) {
+				console.log("redirecting to: groups/"+currentTabs[removedTab].tabId);
+				$('.tabs .active').removeClass('active');
+				Router.go('group',{_id: currentTabs[removedTab].tabId});
+			}
+		}
+		event.preventDefault();
 	}
 }
 
