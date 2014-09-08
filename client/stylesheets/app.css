@@ -8930,7 +8930,7 @@ th.hide-for-touch {
 #menu {
   background: #333333;
   height: 100vh;
-  box-shadow: 3px 0 3px rgba(51, 51, 51, 0.4);
+  box-shadow: 4px 0 3px rgba(51, 51, 51, 0.8);
   z-index: 999;
 }
 
@@ -9054,7 +9054,7 @@ ul {
 
 /* line 107, ../../../scss/_custom.scss */
 #middle {
-  height: 90vh;
+  height: 90%;
 }
 
 /* line 111, ../../../scss/_custom.scss */

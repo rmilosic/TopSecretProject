@@ -9,48 +9,51 @@
 	Router.map( function () {
 		this.route('group', {
 			path: 'groups/:_id',
-		onRun: function() { // This function is called everytime something refreshes on current page. Replace with function that is run only the first time.
+			onBeforeAction: function() {
+				console.log("onBeforeAction:");
+			},
+			onRun: function() {
+				console.log("onRun:");
+			},
+			onAfterAction: function() {
+				console.log("onAfterAction:");
+				var groupCursor = Groups.find(this.params._id);
+				var groupName = groupCursor.map(function(p) { return p.groupName });
 
+				Session.set('currentRoom',this.params._id);
+				Session.set('currentTitle',groupName);
 
-			var groupCursor = Groups.find(this.params._id);
-			var groupName = groupCursor.map(function(p) { return p.groupName });
+				var currentTabs = Session.get('currentTabs');
 
-			Session.set('currentRoom',this.params._id);
-			Session.set('currentTitle',groupName);
-			
-			var currentTabs = Session.get('currentTabs');
-
-			// Check if the tab already exists.
-			var alreadyExists = false;
-			var len = currentTabs.length;
-			for (var i=0; i<len; ++i) {
-				if (i in currentTabs) {
-					var s = currentTabs[i];
-					if(s.tabId==this.params._id)
-						alreadyExists = true;
+				// Check if the tab already exists.
+				var alreadyExists = false;
+				var len = currentTabs.length;
+				for (var i=0; i<len; ++i) {
+					if (i in currentTabs) {
+						var s = currentTabs[i];
+						if(s.tabId==this.params._id)
+							alreadyExists = true;
+					}
 				}
+
+				if(!alreadyExists) {
+					currentTabs.push( {tabId: this.params._id, tabName: groupName.toString()});
+					Session.set('currentTabs',currentTabs);
+				}
+				
+				var that = this;
+				setTimeout(function(){
+					$('.tabs .active').removeClass('active');
+					var searchActiveTabString = "dd[data-id="+that.params._id+"]";
+					$(searchActiveTabString).addClass('active');
+				},200);
+
+				// its too smooth, change or jquery for fade effect
+				//var timeNow = new Date();
+				//Groups.update({_id: Session.get('current_room')}, {$set: {last_used: timeNow.getTime()}});	
 			}
-
-			if(!alreadyExists) {
-				// If we allow duplicates, Meteor's reactivity creates infinite loop.
-				currentTabs.push( {tabId: this.params._id, tabName: groupName.toString()});
-				Session.set('currentTabs',currentTabs);
-			}
-
-			$(".tabs .active").removeClass("active");
-			var searchActiveTabString = "dd[data-id="+this.params._id+"]";
-			$(searchActiveTabString).addClass("active");
-
-			// its too smooth, change or jquery for fade effect
-			//var timeNow = new Date();
-			//Groups.update({_id: Session.get('current_room')}, {$set: {last_used: timeNow.getTime()}});	
-		}
-	});
-this.route('home', {
-	path: '/',
-	onRun: function() {
-		Session.set('currentTitle',"Home");
-	}
-
-});
-});
+		});
+				this.route('home', {
+					path: '/'
+				});
+			});
