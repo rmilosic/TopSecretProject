@@ -60,11 +60,11 @@ body {
 
 /* line 391, ../../../bower_components/foundation/scss/foundation/components/_global.scss */
 body {
-  background: #e9eaed;
+  background: whitesmoke;
   color: #222222;
   padding: 0;
   margin: 0;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif;
   font-weight: normal;
   font-style: normal;
   line-height: 150%;
@@ -1615,7 +1615,7 @@ select {
   color: #222222;
   padding: 1rem;
   display: block;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 1rem;
 }
 /* line 142, ../../../bower_components/foundation/scss/foundation/components/_accordion.scss */
@@ -2321,7 +2321,7 @@ button, .button {
   border-style: solid;
   border-width: 0px;
   cursor: pointer;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif;
   font-weight: normal;
   line-height: normal;
   margin: 0 0 1.25rem;
@@ -4797,7 +4797,7 @@ kbd {
 /* line 91, ../../../bower_components/foundation/scss/foundation/components/_labels.scss */
 .label {
   font-weight: normal;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif;
   text-align: center;
   text-decoration: none;
   line-height: 1;
@@ -5369,7 +5369,7 @@ ul.pagination li {
   color: #eeeeee;
   font-weight: normal;
   font-size: 1rem;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif;
 }
 /* line 143, ../../../bower_components/foundation/scss/foundation/components/_pricing-tables.scss */
 .pricing-table .price {
@@ -5379,7 +5379,7 @@ ul.pagination li {
   color: #333333;
   font-weight: normal;
   font-size: 2rem;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif;
 }
 /* line 144, ../../../bower_components/foundation/scss/foundation/components/_pricing-tables.scss */
 .pricing-table .description {
@@ -5762,7 +5762,7 @@ dialog[open] {
   padding: 0.875rem 0;
   list-style-type: none;
   list-style-position: outside;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif;
 }
 /* line 70, ../../../bower_components/foundation/scss/foundation/components/_side-nav.scss */
 .side-nav li {
@@ -5786,7 +5786,7 @@ dialog[open] {
 .side-nav li.active > a:first-child:not(.button) {
   color: #1cc7ff;
   font-weight: normal;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif;
 }
 /* line 93, ../../../bower_components/foundation/scss/foundation/components/_side-nav.scss */
 .side-nav li.divider {
@@ -5958,7 +5958,7 @@ dialog[open] {
   display: inline;
   margin-left: 1rem;
   margin-bottom: 0.625rem;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif;
   font-weight: normal;
   font-size: 0.875rem;
   color: #999999;
@@ -6500,14 +6500,14 @@ p aside {
 /* Default header styles */
 /* line 252, ../../../bower_components/foundation/scss/foundation/components/_type.scss */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: "Ubuntu", Arial, sans-serif;
   font-weight: normal;
   font-style: normal;
   color: #222222;
   text-rendering: optimizeLegibility;
   margin-top: 0.2rem;
   margin-bottom: 0.5rem;
-  line-height: 1.4;
+  line-height: 1;
 }
 /* line 262, ../../../bower_components/foundation/scss/foundation/components/_type.scss */
 h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
@@ -6760,7 +6760,7 @@ blockquote p {
 @media only screen and (min-width: 40.063em) {
   /* line 453, ../../../bower_components/foundation/scss/foundation/components/_type.scss */
   h1, h2, h3, h4, h5, h6 {
-    line-height: 1.4;
+    line-height: 1;
   }
 
   /* line 454, ../../../bower_components/foundation/scss/foundation/components/_type.scss */
@@ -6925,7 +6925,7 @@ blockquote p {
   background-color: #efefef;
   color: #222222;
   padding: 1rem 2rem;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 1rem;
 }
 /* line 49, ../../../bower_components/foundation/scss/foundation/components/_tabs.scss */
@@ -7363,7 +7363,7 @@ meta.foundation-mq-topbar {
   color: white;
   padding: 12px 0 12px 0;
   padding-left: 15px;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 0.8125rem;
   font-weight: normal;
   text-transform: none;
@@ -8926,53 +8926,100 @@ th.hide-for-touch {
     display: table-cell !important;
   }
 }
-/* line 1, ../../../scss/_navbar.scss */
+/* line 1, ../../../scss/_menu.scss */
+#menu {
+  background: #333333;
+  height: 100vh;
+  box-shadow: 4px 0 3px rgba(51, 51, 51, 0.8);
+  z-index: 999;
+}
+
+/* line 7, ../../../scss/_menu.scss */
 nav {
   margin-top: 1.5rem;
 }
 
 /* line 1, ../../../scss/_custom.scss */
+html, body {
+  margin: 0;
+  /* This is used to reset any browser-default margins */
+  height: 100vh;
+  /* This is needed to overcome a Chrome bug. */
+  width: 100vw;
+  /* As above. */
+}
+
+/* line 6, ../../../scss/_custom.scss */
 .white {
   color: #FFF;
 }
 
-/* line 4, ../../../scss/_custom.scss */
+/* line 10, ../../../scss/_custom.scss */
 li {
   list-style-type: none;
 }
-
-/* line 8, ../../../scss/_custom.scss */
-.user-active {
+/* line 13, ../../../scss/_custom.scss */
+li .user-active {
   font-size: 1rem;
   color: #43ac6a;
   float: left;
   padding-right: 0.2rem;
 }
-
-/* line 14, ../../../scss/_custom.scss */
-.user-offline {
+/* line 19, ../../../scss/_custom.scss */
+li .user-offline {
   font-size: 1rem;
   float: left;
   padding-right: 0.2rem;
 }
 
-/* line 20, ../../../scss/_custom.scss */
+/* line 26, ../../../scss/_custom.scss */
 ul {
   margin: 0;
 }
 
-/* line 25, ../../../scss/_custom.scss */
-#topheader h1 {
-  font-family: 'Lato', sans-serif;
-}
-
 /* line 30, ../../../scss/_custom.scss */
-#navbar {
-  padding-top: 1rem;
+#canvas {
+  background-color: #C8C8C8;
+  padding: 0;
 }
 
-/* line 34, ../../../scss/_custom.scss */
-.close-button {
+/* line 35, ../../../scss/_custom.scss */
+#menu {
+  padding-top: 1.6rem;
+}
+/* line 38, ../../../scss/_custom.scss */
+#menu nav {
+  padding-left: 1rem;
+}
+/* line 42, ../../../scss/_custom.scss */
+#menu h1 {
+  font-family: 'Ubuntu', sans-serif;
+  color: #008cba;
+  margin-bottom: 1.5rem;
+}
+/* line 47, ../../../scss/_custom.scss */
+#menu hr {
+  color: #6D6D6D;
+}
+/* line 51, ../../../scss/_custom.scss */
+#menu h4 {
+  font-family: Monospace, sans-serif;
+  color: #8F8F8F;
+  font-size: 1rem;
+}
+
+/* line 62, ../../../scss/_custom.scss */
+.tabs dd {
+  position: relative;
+}
+/* line 66, ../../../scss/_custom.scss */
+.tabs dd a {
+  border-top-right-radius: 0.625rem;
+  border-top-left-radius: 0.625rem;
+  background-color: #BABABA;
+}
+/* line 73, ../../../scss/_custom.scss */
+.tabs dd .close-button {
   position: absolute;
   top: 0.3rem;
   right: 0.3rem;
@@ -8981,69 +9028,98 @@ ul {
   color: tray;
   display: none;
 }
-
-/* line 44, ../../../scss/_custom.scss */
-.notification {
+/* line 83, ../../../scss/_custom.scss */
+.tabs dd .notification {
   position: absolute;
   color: #008cba;
   top: 0.7rem;
   left: 0.4rem;
   display: none;
+  color: tray;
   font-size: 1.3rem;
 }
-
-/* line 53, ../../../scss/_custom.scss */
-.tabs
-dd {
+/* line 94, ../../../scss/_custom.scss */
+.tabs dd:hover .close-button {
+  display: block;
+}
+/* line 97, ../../../scss/_custom.scss */
+.tabs dd:hover .notification {
+  display: block;
+}
+/* line 100, ../../../scss/_custom.scss */
+.tabs dd.active {
+  z-index: 100;
   position: relative;
 }
 
-/* line 57, ../../../scss/_custom.scss */
-dd:hover .close-button {
-  display: block;
+/* line 107, ../../../scss/_custom.scss */
+#middle {
+  height: 90%;
 }
 
-/* line 60, ../../../scss/_custom.scss */
-dd:hover .notification {
-  display: block;
-}
-
-/* line 65, ../../../scss/_custom.scss */
+/* line 111, ../../../scss/_custom.scss */
 #chatbox {
   margin-bottom: 0.5rem;
-  background-color: #FFF;
-  position: relative;
-  box-shadow: 0 0 0.07rem #383931;
+  background-color: #F5F5F5;
+  height: 90vh;
+  padding-left: 0.6rem;
 }
-/* line 70, ../../../scss/_custom.scss */
+/* line 117, ../../../scss/_custom.scss */
+#chatbox #chatbox::before {
+  box-shadow: -10px 0 15px -15px inset;
+  content: " ";
+  height: 100%;
+  left: -15px;
+  position: absolute;
+  top: 1;
+  width: 10px;
+}
+/* line 127, ../../../scss/_custom.scss */
+#chatbox #chatbox::after {
+  box-shadow: 15px 0 15px -15px inset;
+  content: " ";
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  right: -15px;
+  width: 15px;
+}
+/* line 137, ../../../scss/_custom.scss */
 #chatbox #chatwindow {
-  height: 40rem;
   padding: 1rem 0.5rem 1rem 0.5rem;
 }
-/* line 74, ../../../scss/_custom.scss */
+/* line 140, ../../../scss/_custom.scss */
 #chatbox header {
-  padding-top: 1rem;
+  padding: 1rem 0 0 0.4rem;
   height: 5rem;
   border-bottom: 0.07rem #B5B9B9 solid;
   box-shadow-bottom: 0rem -0.5rem 0.3rem #383931;
 }
 
-/* line 85, ../../../scss/_custom.scss */
-#chatinfo {
-  margin-top: 1.5rem;
-  padding-top: 1rem;
-  padding-left: 1.5rem;
+/* line 148, ../../../scss/_custom.scss */
+.msgBox {
+  height: 75vh;
+  position: relative;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
-/* line 91, ../../../scss/_custom.scss */
+/* line 158, ../../../scss/_custom.scss */
+#chatinfo {
+  background-color: whitesmoke;
+  height: 90vh;
+  padding: 2rem 0.5rem 0rem 2rem;
+}
+
+/* line 164, ../../../scss/_custom.scss */
 .fullWidth {
-  width: 100%;
+  width: 100vw;
   margin-left: auto;
   margin-right: auto;
   max-width: initial;
 }
 
-/* line 98, ../../../scss/_custom.scss */
+/* line 171, ../../../scss/_custom.scss */
 footer {
   background-color: #3c3e3c;
   height: 10rem;
