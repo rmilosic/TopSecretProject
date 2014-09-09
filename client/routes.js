@@ -41,12 +41,13 @@
 					Session.set('currentTabs',currentTabs);
 				}
 				
+				// TODO: Session reactivity is too slow and is rendered after onAfterAction which results in wrong active tab set. FIX IT!
 				var that = this;
 				setTimeout(function(){
 					$('.tabs .active').removeClass('active');
 					var searchActiveTabString = "dd[data-id="+that.params._id+"]";
 					$(searchActiveTabString).addClass('active');
-				},200);
+				},10);
 
 				// its too smooth, change or jquery for fade effect
 				//var timeNow = new Date();
@@ -54,6 +55,9 @@
 			}
 		});
 				this.route('home', {
-					path: '/'
+					path: '/',
+					onBeforeAction: function() {
+						Session.set('currentTitle','Home');
+					}
 				});
 			});

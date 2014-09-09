@@ -164,11 +164,14 @@ Template.closeButton.events = {
 			}
 		}
 		Session.set('currentTabs',currentTabs);
-		console.log("hello");
-		if($(event.target).parent().parent().parent().attr('data-id') == Session.get('currentRoom')) {
+		if(currentTabs.length==0) {
+			Router.go('home');
+		}
+		else if(removedTab==currentTabs.length) {
+			Router.go('group',{_id: currentTabs[removedTab-1].tabId});
+		}
+		else if($(event.target).parent().parent().parent().attr('data-id') == Session.get('currentRoom')) {
 			if(removedTab!=-1) {
-				console.log("redirecting to: groups/"+currentTabs[removedTab].tabId);
-				$('.tabs .active').removeClass('active');
 				Router.go('group',{_id: currentTabs[removedTab].tabId});
 			}
 		}

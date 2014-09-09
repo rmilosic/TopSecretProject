@@ -6,22 +6,9 @@
 		<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
 	</head>
 
-	<!--<header id="topheader">
-		<div class="row fullWidth">
-			<div class="large-12 columns text-center">
-				<a href="{{ pathFor 'home' }}"><h1 class="white">hatChat</h1></a>
-			</div>
-		</div>
-	</header>-->
-	
-
-
 	<div class="row fullWidth">
 		<div id="menu" class="large-3 columns">
-
 			{{> groupsNavigation}}
-
-
 		</div>
 
 		<div id="canvas" class="large-9 columns">
@@ -116,7 +103,7 @@
 
 <template name="groupsNavigation">
 
-	<a href="{{ pathFor 'home' }}"><h1 class="white text-center">hatChat</h1></a> 
+	<h1 class="white text-center">hatChat</h1>
 	<h4 class="text-center"> “A modern approach to collaboration” </h4> <hr>
 	<nav role="navigation">
 		<!-- side bar -->
@@ -147,11 +134,6 @@
 				<input id="groupInput" type="text" placeholder="Type new group name .." autofocus="true"> 
 			</div>	
 		</div>
-		<br><br>
-		<h3 class="white"> Users</h3>
-		{{#each users}}
-		<li><h6 class="white">Anonymous{{userId}}</h6></li>
-		{{/each}}
 	</nav>
 
 	
