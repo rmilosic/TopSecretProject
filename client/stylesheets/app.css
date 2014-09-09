@@ -8954,71 +8954,92 @@ html, body {
   color: #FFF;
 }
 
-/* line 10, ../../../scss/_custom.scss */
+/* line 9, ../../../scss/_custom.scss */
+.two-columns {
+  -webkit-column-count: 2;
+  /* Chrome, Safari, Opera */
+  -moz-column-count: 2;
+  /* Firefox */
+  column-count: 2;
+  -moz-column-fill: auto;
+  /* Firefox */
+  column-fill: auto;
+}
+
+/* line 18, ../../../scss/_custom.scss */
+.tag-active {
+  font-size: 1.03125rem;
+}
+
+/* line 22, ../../../scss/_custom.scss */
 li {
   list-style-type: none;
 }
-/* line 13, ../../../scss/_custom.scss */
+/* line 25, ../../../scss/_custom.scss */
 li .user-active {
   font-size: 1rem;
   color: #43ac6a;
   float: left;
   padding-right: 0.2rem;
 }
-/* line 19, ../../../scss/_custom.scss */
+/* line 31, ../../../scss/_custom.scss */
 li .user-offline {
   font-size: 1rem;
   float: left;
   padding-right: 0.2rem;
 }
 
-/* line 26, ../../../scss/_custom.scss */
+/* line 38, ../../../scss/_custom.scss */
 ul {
   margin: 0;
 }
 
-/* line 30, ../../../scss/_custom.scss */
+/* line 42, ../../../scss/_custom.scss */
 #canvas {
-  background-color: #C8C8C8;
   padding: 0;
 }
 
-/* line 35, ../../../scss/_custom.scss */
+/* line 45, ../../../scss/_custom.scss */
+#tab-box {
+  background-color: #C8C8C8;
+  padding-left: 1rem;
+}
+
+/* line 50, ../../../scss/_custom.scss */
 #menu {
   padding-top: 1.6rem;
 }
-/* line 38, ../../../scss/_custom.scss */
+/* line 53, ../../../scss/_custom.scss */
 #menu nav {
   padding-left: 1rem;
 }
-/* line 42, ../../../scss/_custom.scss */
+/* line 57, ../../../scss/_custom.scss */
 #menu h1 {
   font-family: 'Ubuntu', sans-serif;
   color: #008cba;
   margin-bottom: 1.5rem;
 }
-/* line 47, ../../../scss/_custom.scss */
+/* line 62, ../../../scss/_custom.scss */
 #menu hr {
   color: #6D6D6D;
 }
-/* line 51, ../../../scss/_custom.scss */
+/* line 66, ../../../scss/_custom.scss */
 #menu h4 {
   font-family: Monospace, sans-serif;
   color: #8F8F8F;
   font-size: 1rem;
 }
 
-/* line 62, ../../../scss/_custom.scss */
+/* line 77, ../../../scss/_custom.scss */
 .tabs dd {
   position: relative;
 }
-/* line 66, ../../../scss/_custom.scss */
+/* line 81, ../../../scss/_custom.scss */
 .tabs dd a {
   border-top-right-radius: 0.625rem;
   border-top-left-radius: 0.625rem;
-  background-color: #BABABA;
 }
-/* line 73, ../../../scss/_custom.scss */
+/* line 88, ../../../scss/_custom.scss */
 .tabs dd .close-button {
   position: absolute;
   top: 0.3rem;
@@ -9028,7 +9049,7 @@ ul {
   color: tray;
   display: none;
 }
-/* line 83, ../../../scss/_custom.scss */
+/* line 98, ../../../scss/_custom.scss */
 .tabs dd .notification {
   position: absolute;
   color: #008cba;
@@ -9038,33 +9059,32 @@ ul {
   color: tray;
   font-size: 1.3rem;
 }
-/* line 94, ../../../scss/_custom.scss */
+/* line 109, ../../../scss/_custom.scss */
 .tabs dd:hover .close-button {
   display: block;
 }
-/* line 97, ../../../scss/_custom.scss */
+/* line 112, ../../../scss/_custom.scss */
 .tabs dd:hover .notification {
   display: block;
 }
-/* line 100, ../../../scss/_custom.scss */
+/* line 115, ../../../scss/_custom.scss */
 .tabs dd.active {
   z-index: 100;
   position: relative;
 }
 
-/* line 107, ../../../scss/_custom.scss */
+/* line 122, ../../../scss/_custom.scss */
 #middle {
   height: 90%;
 }
 
-/* line 111, ../../../scss/_custom.scss */
+/* line 126, ../../../scss/_custom.scss */
 #chatbox {
-  margin-bottom: 0.5rem;
   background-color: #F5F5F5;
   height: 90vh;
   padding-left: 0.6rem;
 }
-/* line 117, ../../../scss/_custom.scss */
+/* line 132, ../../../scss/_custom.scss */
 #chatbox #chatbox::before {
   box-shadow: -10px 0 15px -15px inset;
   content: " ";
@@ -9074,7 +9094,7 @@ ul {
   top: 1;
   width: 10px;
 }
-/* line 127, ../../../scss/_custom.scss */
+/* line 142, ../../../scss/_custom.scss */
 #chatbox #chatbox::after {
   box-shadow: 15px 0 15px -15px inset;
   content: " ";
@@ -9084,19 +9104,29 @@ ul {
   right: -15px;
   width: 15px;
 }
-/* line 137, ../../../scss/_custom.scss */
+/* line 152, ../../../scss/_custom.scss */
 #chatbox #chatwindow {
-  padding: 1rem 0.5rem 1rem 0.5rem;
+  padding: 1rem 0.5rem 0 0.5rem;
 }
-/* line 140, ../../../scss/_custom.scss */
+/* line 155, ../../../scss/_custom.scss */
 #chatbox header {
-  padding: 1rem 0 0 0.4rem;
-  height: 5rem;
+  padding-left: 1.5rem;
+  padding-top: 1.5rem;
   border-bottom: 0.07rem #B5B9B9 solid;
   box-shadow-bottom: 0rem -0.5rem 0.3rem #383931;
 }
+/* line 161, ../../../scss/_custom.scss */
+#chatbox header h2 {
+  padding: 0;
+  margin: 0;
+}
+/* line 166, ../../../scss/_custom.scss */
+#chatbox header #active-tag {
+  margin-left: 2rem;
+  margin-top: 0.4rem;
+}
 
-/* line 148, ../../../scss/_custom.scss */
+/* line 175, ../../../scss/_custom.scss */
 .msgBox {
   height: 75vh;
   position: relative;
@@ -9104,14 +9134,22 @@ ul {
   overflow-x: hidden;
 }
 
-/* line 158, ../../../scss/_custom.scss */
+/* line 185, ../../../scss/_custom.scss */
 #chatinfo {
   background-color: whitesmoke;
   height: 90vh;
-  padding: 2rem 0.5rem 0rem 2rem;
+  padding: 2rem 4rem 0rem 1rem;
+}
+/* line 190, ../../../scss/_custom.scss */
+#chatinfo a {
+  color: #222222;
+}
+/* line 194, ../../../scss/_custom.scss */
+#chatinfo .right {
+  padding-top: 0.5rem;
 }
 
-/* line 164, ../../../scss/_custom.scss */
+/* line 199, ../../../scss/_custom.scss */
 .fullWidth {
   width: 100vw;
   margin-left: auto;
@@ -9119,7 +9157,7 @@ ul {
   max-width: initial;
 }
 
-/* line 171, ../../../scss/_custom.scss */
+/* line 206, ../../../scss/_custom.scss */
 footer {
   background-color: #3c3e3c;
   height: 10rem;
