@@ -194,6 +194,7 @@ Template.input.events = {
 				anonUser=1;
 			}
 			var message = document.getElementById('message');
+			var tag = "Mathematics";
 
 			var timeNow = new Date();
 			var hours   = timeNow.getHours();
@@ -205,7 +206,7 @@ Template.input.events = {
 			//timeString  += (hours >= 12) ? " p.m." : " a.m.";
 
 			if(message.value != '') {
-				Groups.update({_id: Session.get('currentRoom')} , { $push: {groupMsgs: {name: name, message: message.value, time: timeString }}, $inc: { numberOfMsgs: 1} });
+				Groups.update({_id: Session.get('currentRoom')} , { $push: {groupMsgs: {name: name, message: message.value, time: timeString, tag: tag }}, $inc: { numberOfMsgs: 1} });
 				document.getElementById('message').value= '';
 				message.value = '';	
 			} 

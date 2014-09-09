@@ -8,6 +8,10 @@
 
 	<div class="row fullWidth">
 		<div id="menu" class="large-3 columns">
+<<<<<<< HEAD
+=======
+			{{> loginButtons}}
+>>>>>>> 35f734393a029ac23ae30d5c6639868a7c2c6cdc
 			{{> groupsNavigation}}
 		</div>
 
@@ -214,7 +218,7 @@
 
 <template name="list">
 	{{#each messages}}
-	<li><small><var>{{time}}</var></small><strong> {{name}}:</strong> {{> msg}} Tag:[{{tag}}]</li>
+	<li><small><var>{{time}}</var></small><strong> {{name}}:</strong> {{> msg}}</li>
 	{{/each}}
 </template>
 
