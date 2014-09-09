@@ -9030,26 +9030,27 @@ ul {
   font-size: 1rem;
 }
 
-/* line 77, ../../../scss/_custom.scss */
-.tabs dd {
-  position: relative;
-}
-/* line 81, ../../../scss/_custom.scss */
-.tabs dd a {
-  border-top-right-radius: 0.625rem;
-  border-top-left-radius: 0.625rem;
-}
-/* line 88, ../../../scss/_custom.scss */
-.tabs dd .close-button {
+/* line 73, ../../../scss/_custom.scss */
+.close-button, .close-button-tab, .close-button-tag {
   position: absolute;
   top: 0.3rem;
   right: 0.3rem;
   font-size: 1.0rem;
   font-family: helvetica;
-  color: tray;
   display: none;
+  z-index: 999;
 }
-/* line 98, ../../../scss/_custom.scss */
+
+/* line 91, ../../../scss/_custom.scss */
+.tabs dd {
+  position: relative;
+}
+/* line 95, ../../../scss/_custom.scss */
+.tabs dd a {
+  border-top-right-radius: 0.625rem;
+  border-top-left-radius: 0.625rem;
+}
+/* line 100, ../../../scss/_custom.scss */
 .tabs dd .notification {
   position: absolute;
   color: #008cba;
@@ -9059,32 +9060,32 @@ ul {
   color: tray;
   font-size: 1.3rem;
 }
-/* line 109, ../../../scss/_custom.scss */
-.tabs dd:hover .close-button {
+/* line 111, ../../../scss/_custom.scss */
+.tabs dd:hover .close-button, .tabs dd:hover .close-button-tab, .tabs dd:hover .close-button-tag {
   display: block;
 }
-/* line 112, ../../../scss/_custom.scss */
+/* line 114, ../../../scss/_custom.scss */
 .tabs dd:hover .notification {
   display: block;
 }
-/* line 115, ../../../scss/_custom.scss */
+/* line 117, ../../../scss/_custom.scss */
 .tabs dd.active {
   z-index: 100;
   position: relative;
 }
 
-/* line 122, ../../../scss/_custom.scss */
+/* line 124, ../../../scss/_custom.scss */
 #middle {
   height: 90%;
 }
 
-/* line 126, ../../../scss/_custom.scss */
+/* line 128, ../../../scss/_custom.scss */
 #chatbox {
   background-color: #F5F5F5;
   height: 90vh;
   padding-left: 0.6rem;
 }
-/* line 132, ../../../scss/_custom.scss */
+/* line 134, ../../../scss/_custom.scss */
 #chatbox #chatbox::before {
   box-shadow: -10px 0 15px -15px inset;
   content: " ";
@@ -9094,7 +9095,7 @@ ul {
   top: 1;
   width: 10px;
 }
-/* line 142, ../../../scss/_custom.scss */
+/* line 144, ../../../scss/_custom.scss */
 #chatbox #chatbox::after {
   box-shadow: 15px 0 15px -15px inset;
   content: " ";
@@ -9104,29 +9105,42 @@ ul {
   right: -15px;
   width: 15px;
 }
-/* line 152, ../../../scss/_custom.scss */
+/* line 155, ../../../scss/_custom.scss */
 #chatbox #chatwindow {
   padding: 1rem 0.5rem 0 0.5rem;
 }
-/* line 155, ../../../scss/_custom.scss */
+/* line 159, ../../../scss/_custom.scss */
 #chatbox header {
   padding-left: 1.5rem;
   padding-top: 1.5rem;
   border-bottom: 0.07rem #B5B9B9 solid;
   box-shadow-bottom: 0rem -0.5rem 0.3rem #383931;
 }
-/* line 161, ../../../scss/_custom.scss */
+/* line 165, ../../../scss/_custom.scss */
 #chatbox header h2 {
   padding: 0;
   margin: 0;
 }
-/* line 166, ../../../scss/_custom.scss */
-#chatbox header #active-tag {
+/* line 170, ../../../scss/_custom.scss */
+#chatbox header #activetag {
   margin-left: 2rem;
   margin-top: 0.4rem;
 }
+/* line 174, ../../../scss/_custom.scss */
+#chatbox header #activetag:hover .left {
+  margin-right: 0.8rem;
+}
+/* line 177, ../../../scss/_custom.scss */
+#chatbox header #activetag:hover .close-button-tag {
+  display: block;
+}
+/* line 181, ../../../scss/_custom.scss */
+#chatbox header a {
+  color: white;
+  display: block;
+}
 
-/* line 175, ../../../scss/_custom.scss */
+/* line 190, ../../../scss/_custom.scss */
 .msgBox {
   height: 75vh;
   position: relative;
@@ -9134,22 +9148,22 @@ ul {
   overflow-x: hidden;
 }
 
-/* line 185, ../../../scss/_custom.scss */
+/* line 200, ../../../scss/_custom.scss */
 #chatinfo {
   background-color: whitesmoke;
   height: 90vh;
   padding: 2rem 4rem 0rem 1rem;
 }
-/* line 190, ../../../scss/_custom.scss */
+/* line 205, ../../../scss/_custom.scss */
 #chatinfo a {
   color: #222222;
 }
-/* line 194, ../../../scss/_custom.scss */
+/* line 209, ../../../scss/_custom.scss */
 #chatinfo .right {
   padding-top: 0.5rem;
 }
 
-/* line 199, ../../../scss/_custom.scss */
+/* line 214, ../../../scss/_custom.scss */
 .fullWidth {
   width: 100vw;
   margin-left: auto;
@@ -9157,7 +9171,7 @@ ul {
   max-width: initial;
 }
 
-/* line 206, ../../../scss/_custom.scss */
+/* line 221, ../../../scss/_custom.scss */
 footer {
   background-color: #3c3e3c;
   height: 10rem;
