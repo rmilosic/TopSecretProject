@@ -164,11 +164,14 @@ Template.closeButton.events = {
 			}
 		}
 		Session.set('currentTabs',currentTabs);
-		console.log("hello");
-		if($(event.target).parent().parent().parent().attr('data-id') == Session.get('currentRoom')) {
+		if(currentTabs.length==0) {
+			Router.go('home');
+		}
+		else if(removedTab==currentTabs.length) {
+			Router.go('group',{_id: currentTabs[removedTab-1].tabId});
+		}
+		else if($(event.target).parent().parent().parent().attr('data-id') == Session.get('currentRoom')) {
 			if(removedTab!=-1) {
-				console.log("redirecting to: groups/"+currentTabs[removedTab].tabId);
-				$('.tabs .active').removeClass('active');
 				Router.go('group',{_id: currentTabs[removedTab].tabId});
 			}
 		}
@@ -191,6 +194,7 @@ Template.input.events = {
 				anonUser=1;
 			}
 			var message = document.getElementById('message');
+			var tag = "Mathematics";
 
 			var timeNow = new Date();
 			var hours   = timeNow.getHours();
@@ -202,7 +206,7 @@ Template.input.events = {
 			//timeString  += (hours >= 12) ? " p.m." : " a.m.";
 
 			if(message.value != '') {
-				Groups.update({_id: Session.get('currentRoom')} , { $push: {groupMsgs: {name: name, message: message.value, time: timeString }}, $inc: { numberOfMsgs: 1} });
+				Groups.update({_id: Session.get('currentRoom')} , { $push: {groupMsgs: {name: name, message: message.value, time: timeString, tag: tag }}, $inc: { numberOfMsgs: 1} });
 				document.getElementById('message').value= '';
 				message.value = '';	
 			} 
