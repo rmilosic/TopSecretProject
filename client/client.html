@@ -21,7 +21,7 @@
 							<i class="fa fa-exclamation-circle"></i>
 						</div>
 						<a href="{{ pathFor 'group' _id=tabId }}">{{tabName}}</a> 
-							{{> closeButton}}
+						{{> closeButton}}
 					</dd>
 					{{/each}}
 				</dl>
@@ -39,13 +39,14 @@
 									</h2>
 
 
-									
+									{{#if isNotHomeView}}
 									<div id="activetag" class="label round tag-active clearfix">
-										<div class="left">Tag name</div> 
+										<div class="left">{{getActiveTag}}</div> 
 										<div class="close-button-tag right">
 											<a href=""><i class="fa fa-times"></i></a>
 										</div>
 									</div> 
+									{{/if}}
 								</div>
 
 								
@@ -107,20 +108,11 @@
 					</div>
 
 					<div class="right">
-						<a href=""><i class="fa fa-plus"></i></a>
+						<a href="" onclick="addNewTag()"><i class="fa fa-plus"></i></a>
 					</div>
 				</div>
 
-				<ul class="two-columns">
-					<a href=""><li><span class="label round tag-active">Bullshit</span></li></a>
-					<li><span class="label round">Party</span></li>
-					<li><span class="label round">Party</span></li>
-					<li><span class="label round">Party</span></li>
-					<li><span class="label round">Party</span></li>
-					<li><span class="label round">Party</span></li>
-
-
-				</ul>	
+				{{> tagsTemplate}}
 
 				<br>
 				<br>
@@ -160,6 +152,14 @@
 	</div>
 
 
+</template>
+
+<template name="tagsTemplate">
+	<ul class="two-columns"> <!-- set tag-active for active tag -->
+		{{#each tags}}
+		<a href=""><li><span class="label round" data-id="{{this}}">{{this}}</span></li></a>
+		{{/each}}
+	</ul>	
 </template>
 
 <template name="closeButton">
@@ -227,7 +227,7 @@
 
 <template name="list">
 	{{#each messages}}
-	<li><small><var>{{time}}</var></small><strong> {{name}}:</strong> {{> msg}} Tag:[{{tag}}]</li>
+	<li><small><var>{{time}}</var></small><strong> {{name}}:</strong> {{> msg}}</li>
 	{{/each}}
 </template>
 
