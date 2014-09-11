@@ -2,6 +2,26 @@
 * Templates
 */
 
+Template.tagsTemplate.events = {
+	'click ': function(event) {
+		data = $(event.target).attr('data-id');
+		$(".two-columns .label.round.tag-active").removeClass("tag-active");
+		$(event.target).addClass("tag-active");
+		Session.set('activeTag',data);
+	}
+}
+
+Template.tagsTemplate.tags = function() {
+	var tags = Groups.findOne({_id: Session.get('currentRoom')}, {tags: true});
+	return tags ? tags.tags : [];
+}
+
+Template.layout.getActiveTag = function() {
+	var activeTag = Session.get('activeTag');
+	return activeTag != null ? activeTag : "No active tag.";
+}
+
+
 Template.layout.getTitle = function() {
 	return Session.get('currentTitle');
 }
@@ -31,20 +51,34 @@ Template.list.messages = function() {
 	var pages = Session.get('currentPage');
 	var cursor = Groups.find({_id: Session.get('currentRoom')});
 	var count = 0;
-	var groupsArray = 0;
+	var messages = 0;
 	cursor.forEach(function(first){
 		count = first.numberOfMsgs;
-		groupsArray = first.groupMsgs;
+		messages = first.groupMsgs;
 	});
+	var filteredMessages = [];
+	var j=0;
 
-	//if(count<=20)
+	// Filter untagged on serverside and refactor to more generic code.
+	if(Session.get('activeTag')) {
+		var arrayLength = messages.length;
+		for (var i = 0; i < arrayLength; i++) {
+			console.log(messages[i].tag + " " + Session.get('activeTag'));
+			 if(messages[i].tag==Session.get('activeTag')) {
+			 	filteredMessages[j]=messages[i];
+			 	j++;
+			}
+		}
+		return filteredMessages;
+	}
+
 	//	$('.msgBox').scrollTop($('.msgBox').prop('scrollHeight'));
 
 	if(count<=pages*50)
-		return groupsArray;	
+		return messages;	
 	else
 	{
-		return groupsArray.slice(count-(50*pages),count);
+		return messages.slice(count-(50*pages),count);
 	}	
 	//return Groups.find({}, { skip:count-(50*pages), limit:50*pages });
 
@@ -131,6 +165,7 @@ Template.groupsNavigation.events = {
 				Groups.insert({
 					groupName: groupInput.value,
 					last_used: new Date().getTime(),
+					tags: [],
 					groupMsgs: []
 				});
 
@@ -148,6 +183,7 @@ Template.groupsNavigation.events = {
 
 	}
 }
+
 
 Template.closeButton.events = {
 	'click' : function(event) {
@@ -194,7 +230,7 @@ Template.input.events = {
 				anonUser=1;
 			}
 			var message = document.getElementById('message');
-			var tag = "Mathematics";
+			var tag = Session.get("activeTag");
 
 			var timeNow = new Date();
 			var hours   = timeNow.getHours();
@@ -206,7 +242,7 @@ Template.input.events = {
 			//timeString  += (hours >= 12) ? " p.m." : " a.m.";
 
 			if(message.value != '') {
-				Groups.update({_id: Session.get('currentRoom')} , { $push: {groupMsgs: {name: name, message: message.value, time: timeString, tag: tag }}, $inc: { numberOfMsgs: 1} });
+				Groups.update({_id: Session.get('currentRoom')}, { $push: {groupMsgs: {name: name, message: message.value, time: timeString, tag: tag }}, $inc: { numberOfMsgs: 1} });
 				document.getElementById('message').value= '';
 				message.value = '';	
 			} 
