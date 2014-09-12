@@ -1,0 +1,239 @@
+
+<template name="layout">
+	<!-- Find alternative in meteor, instead of calling link font-awesome. -->
+	<head>
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+		<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+	</head>
+
+	<div class="row fullWidth">
+		<div id="menu" class="large-3 columns">
+<<<<<<< HEAD
+=======
+			{{> loginButtons}}
+>>>>>>> 35f734393a029ac23ae30d5c6639868a7c2c6cdc
+			{{> groupsNavigation}}
+		</div>
+
+		<div id="canvas" class="large-9 columns">
+			<div id="tab-box" class="large-12 columns">
+				{{#if isNotHomeView}}
+				<dl class="tabs" data-tab>
+					{{#each tabs}}
+					<dd data-id="{{tabId}}">
+						{{> closeButton}}
+						<div class="notification">
+							<i class="fa fa-exclamation-circle"></i>
+						</div>
+						<a href="{{ pathFor 'group' _id=tabId }}">{{tabName}}</a>  
+					</dd>
+					{{/each}}
+				</dl>
+				{{/if}}
+			</div>
+			<div class="large-9 columns" style="padding: 0;">
+				<div id="middle">
+					<div id="chatbox">
+
+						<header>
+							<div class="clearfix">
+								<div class="left">
+									<h2 class="left"> 
+										{{getTitle}}
+									</h2>
+								
+								<span id="active-tag" class="label round tag-active right">Bullshit</span>
+							</div>	
+
+								<div class="large-6 columns right">
+									
+									<div class="large-7 small-7 columns right">
+										
+
+										<div class="row collapse prefix-round">
+											<div class="small-2 columns">
+												<a href="#" class="button prefix"><i class="fa fa-search fa-fw"></i></a>
+											</div>
+
+											<div class="small-10 columns">
+												<input type="text" placeholder="Search in this group"> 
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</header>
+
+						<main>
+							<div id="chatwindow">
+								{{> yield}}
+							</div>
+						</main>
+					</div>
+				</div>
+			</div>
+
+
+			<div id="chatinfo" class="large-3 columns">
+
+
+				<div class="clearfix">
+					<div class="left">
+						<h3><i class="fa fa-info-circle"></i> About</h3>
+					</div>
+
+					<div class="right">
+						<a href=""><i class="fa fa-cog"></i></a>
+					</div>
+				</div>
+
+				<p> Group description here. </p>
+
+				<br>
+				<br>
+
+				<div class="clearfix">
+					<div class="left">
+						<h3><i class="fa fa-tags"></i> Tags</h3> 
+					</div>
+
+					<div class="right">
+						<a href=""><i class="fa fa-plus"></i></a>
+					</div>
+				</div>
+
+				<ul class="two-columns">
+					<a href=""><li><span class="label tag-active">Bullshit</span></li></a>
+					<li><span class="label">Party</span></li>
+					<li><span class="label">Party</span></li>
+					<li><span class="label">Party</span></li>
+					<li><span class="label">Party</span></li>
+
+				</ul>	
+
+				<br>
+				<br>
+
+				<div class="clearfix">
+					<div class="left">
+						<h3><i class="fa fa-file-text"></i> Files</h3>
+					</div>
+
+					<div class="right">
+						<a href=""><i class="fa fa-plus"></i></a>
+					</div>
+				</div>
+
+
+
+				<br>
+				<br>
+
+				<div class="clearfix">
+					<div class="left">
+						<h3><i class="fa fa-user"></i>Members</h3>
+					</div>
+
+					<div class="right">
+						<a href=""><i class="fa fa-plus"></i></a>
+					</div>
+				</div>
+
+				<ul class="user-list">
+					{{#each users}} <!-- user-active class for active users and user-offline for offline user -->
+					<li><div class="user-active"><i class="fa fa-circle"></i></div>Anonymous{{userId}}</li>
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+</template>
+
+<template name="closeButton">
+	<div class="close-button">
+		<a href=""><i class="fa fa-times"></i></a>
+	</div>
+</template>
+
+<template name="groupsNavigation">
+
+	<h1 class="white text-center">hatChat</h1>
+	<h4 class="text-center"> “A modern approach to collaboration” </h4> <hr>
+	<nav role="navigation">
+		<!-- side bar -->
+		<!--SEARCH -->
+		<div class="large-12 columns">
+			<div class="row collapse prefix-round">
+				<div class="small-2 columns">
+					<a href="#" class="button prefix"><i class="fa fa-search fa-fw"></i></a>
+				</div>
+				<div class="small-10 columns">
+					<input type="text" placeholder="Search for groups and people"> 
+				</div>
+
+			</div>
+		</div>
+
+		<h3 class="white">My groups</h3>
+		{{#each groups}}
+		<li><a href="{{ pathFor 'group' _id=this._id }}"><strong>{{groupName}}</strong></a></li>
+		{{/each}}
+		<br>
+		<div class="createNewGroupDiv">
+			<div class="groupInputLabel">
+				<i id="newGroupIcon" class="fa fa-plus white"></i> <strong class="white" id="newGroupLabel"> Create a new group </strong>
+			</div>
+			<div class="groupInputTextBox input-grpu margin-bottom-sm hidden">
+				<span class="input-group-addon"></span>
+				<input id="groupInput" type="text" placeholder="Type new group name .." autofocus="true"> 
+			</div>	
+		</div>
+	</nav>
+
+
+</template>
+
+<template name="group">
+	<!--<div class="msgBox" style="position: relative; overflow-y: scroll; overflow-x: hidden; height: 500px; width: 600px;">
+-->
+<div class="msgBox">
+	{{> loadMore}}
+	{{> list }}
+</div>
+
+{{> input }}
+</template>
+
+<template name="loadMore">
+	<div id="setToCenter" style="text-align: center">
+		{{#if haveMore }}
+		<a href="">Load more ({{ count }}) ...</a>
+		{{/if}}
+	</div>
+</template>
+
+<template name="list">
+	{{#each messages}}
+	<li><small><var>{{time}}</var></small><strong> {{name}}:</strong> {{> msg}}</li>
+	{{/each}}
+</template>
+
+<template name="msg">
+	{{ message }}
+</template>
+
+<template name="input">
+	<div class="row" id="chatinput">
+		<div class="large-12 columns bottom">
+			<input id="message" type="text" class="form-control" placeholder="Enter your message..">
+		</div>
+	</div>
+</template>
+
+<template name="home">
+	This is home view.
+</template>

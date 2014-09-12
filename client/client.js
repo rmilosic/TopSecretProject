@@ -1,5 +1,13 @@
 CurrentTabs = new Meteor.Collection(null);
 
+addNewTag = function() {
+	// TODO: Add more user friendly input
+	var tag = prompt("Enter new group tag:", "New group tag");
+	if(tag!=null) {
+		Groups.update({'_id': Session.get('currentRoom')}, {$push: {'tags': tag}});
+	}
+}
+
 // client code: ping heartbeat every second for immidiate effect in current users
 Meteor.setInterval(function () {
 	Meteor.call('keepalive', Session.get('currentUser'));

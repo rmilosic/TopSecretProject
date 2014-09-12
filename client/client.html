@@ -5,15 +5,6 @@
 		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 		<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
 	</head>
-
-	<!--<header id="topheader">
-		<div class="row fullWidth">
-			<div class="large-12 columns text-center">
-				<a href="{{ pathFor 'home' }}"><h1 class="white">hatChat</h1></a>
-			</div>
-		</div>
-	</header>-->
-	
 	
 	
 	<div class="row fullWidth">
@@ -35,8 +26,9 @@
 			<div class="small-9 columns">
 				<div class="center"><h2 class="white text-center">{{getTitle}}</h2></div>
 			</div>
-			
 		</div>
+			
+
 		<!-- MOBILE NAV -->
 		<div id="smallNav" class="small-12 columns">
 			<div class="small-3 columns left">
@@ -95,7 +87,7 @@
 						<!-- MOBILE TAG SHOW -->
 						<div class="small-12 show-for-small-only columns">
 							<div id="activetag" class="label round tag-active left clearfix">
-								<div class="left">Tag name</div> 
+								<div class="left">{{getActiveTag}}</div> 
 								<div class="close-button-tag right">
 									<a href=""><i class="fa fa-times"></i></a>
 								</div>
@@ -106,17 +98,21 @@
 						<header class="large-12 medium-12  columns show-for-medium-up">
 							<div class="large-7 medium-7 columns">
 								<div class="left">
-									<h3> 
+									<h2 class="left"> 
 										{{getTitle}}
-									</h3>
+									</h2>
+									
+									{{#if isNotHomeView}}
+									<div id="activetag" class="label round tag-active clearfix">
+										<div class="left">
+											{{getActiveTag}}
+										</div> 
+										<div class="close-button-tag right">
+											<a href=""><i class="fa fa-times"></i></a>
+										</div>
+									</div> 
+									{{/if}}
 								</div>
-								<div id="activetag" class="label round tag-active left clearfix">
-									<div class="left">Tag name</div> 
-
-									<div class="close-button-tag right">
-										<a href=""><i class="fa fa-times"></i></a>
-									</div>
-								</div> 
 							</div>
 
 							<div class="large-5 medium-5 columns">
@@ -170,23 +166,14 @@
 					</div>
 
 					<div class="right">
-						<a href=""><i class="fa fa-plus"></i></a>
+						<a href="" onclick="addNewTag()"><i class="fa fa-plus"></i></a>
 					</div>
 				</div>
 
+
 				<div>
-					<a href=""><span class="label round tag-active">Bullshit</span></a>
-					<a href=""><span class="label round">Bullshit</span></a>
-					<a href=""><span class="label round">Bullshit</span></a>
-					<a href=""><span class="label round">Bullshit</span></a>
-					<a href=""><span class="label round">Bullshit</span></a>
-					<a href=""><span class="label round">Bullshit</span></a>
-					<a href=""><span class="label round">Bullshit</span></a>
-					<a href=""><span class="label round">Bullshit</span></a>
-					<a href=""><span class="label round">Bullshit</span></a>
-
-
-				</div>	
+				{{> tagsTemplate}}
+				</div>
 
 				<br>
 				<br>
@@ -228,6 +215,14 @@
 
 </template>
 
+<template name="tagsTemplate">
+	 <!-- set tag-active for active tag -->
+		{{#each tags}}
+		<a href=""><span class="label round" data-id="{{this}}">{{this}}</span></a>
+		{{/each}}
+	
+</template>
+
 <template name="closeButton">
 	<div class="close-button-tag right">
 		<a href=""><i class="fa fa-times"></i></a>
@@ -241,12 +236,11 @@
 		</a> 
 	</div>
 
-	<div class="large-12 medium-12 small-12 columns">
-		<h4 class="text-center"> “A modern approach to collaboration” </h4> <hr>
+	<div class="large-12 medium-12 small-12 columns text-center">
+		<h5 class="white"> “A modern approach to collaboration” </h5> <hr>
 	</div>
 
 	
-
 	<nav role="navigation">
 		<!-- side bar -->
 		<!--SEARCH -->
@@ -279,7 +273,6 @@
 			</div>	
 		</div>
 
-		
 	</nav>
 
 
