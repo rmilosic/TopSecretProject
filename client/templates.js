@@ -35,7 +35,7 @@ Template.layout.isNotHomeView = function() {
 }
 
 Template.layout.events = {
-	'click': function(e) {
+	/*'click': function(e) {
 		var container = $(".createNewGroupDiv");
 		if (!container.is(e.target) && container.has(e.target).length === 0) {
 			var createNewGroupLabel = $(".groupInputLabel");
@@ -44,7 +44,19 @@ Template.layout.events = {
 			var createNewGroupInput = $(".groupInputTextBox");
 			createNewGroupInput.addClass("hidden");
 		}
+	};*/
+
+	'click #topbar .left': function() {
+		$('#smallNav').slideToggle('fast')
+	},
+
+	'click #smallNav .close-button-nav': function() {
+		$('#smallNav').slideToggle('fast')
 	}
+
+
+	
+
 }
 
 Template.list.messages = function() {
