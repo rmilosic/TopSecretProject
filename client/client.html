@@ -9,309 +9,348 @@
 		<script src="/js/vendor/fastclick.js"></script>
 	</head>
 	
-	
+
 	<div class="row fullWidth">
+
 
 		<div id="largeNav" class="large-3 medium-4 small-12 show-for-medium-up columns">
 
 			<div class="small-3 columns left">
-				{{> loginButtons}}
+				{{#if currentUser}}
+				<h5 class="white text-left">{{currentUser.profile.firstName}} {{currentUser.profile.lastName}}</h5>
+				<a href="" id="logout"> Logout</a>
+				{{else}}
+				<a href="{{ pathFor 'login' }}">> Sign in</a>
+				{{/if}}
 			</div>
+
 			<div class="small-3 show-for-small-only columns small-offset-6">
 				<div class="close-button-nav">
 					<a href=""><i class="fa fa-times white right"></i></a>
 				</div>
 			</div>
+			
 
-			{{> groupsNavigation}}
+				{{> groupsNavigation}}
 
 		</div>
 
-		<!-- MOBILE TOPBAR -->
-		<div id="topbar" class="small-12 columns show-for-small-only">
-			<div id="top-button" class="small-2 columns">
-				<a href="#"><div class="left"><i class="fa fa-bars white"></i></div></a>
-			</div>
-			<div class="small-7 columns">
-				<div class="center"><h2 class="white text-center">{{getTitle}}</h2></div>
-			</div>
-			<div id="top-info" class="small-2 columns">
-				<a href="#"><div class="right"><i class="fa fa-info-circle white"></i></div></a>
-			</div>
-		</div>
-
-
-		<!--MOBILE SEARCH -->
-
-		<div id="smallSearch" class="small-12 columns show-for-small-only">
-			<div class="row collapse prefix-round">
-				<div class="small-1 columns">
-					<a href="#" class="button prefix"><i class="fa fa-search fa-fw"></i></a>
+			<!-- MOBILE TOPBAR -->
+			<div id="topbar" class="small-12 columns show-for-small-only">
+				<div id="top-button" class="small-2 columns">
+					<a href="#"><div class="left"><i class="fa fa-bars white"></i></div></a>
 				</div>
-
-				<div class="small-11 columns">
-					<input type="text" placeholder="Search in this group"> 
+				<div class="small-7 columns">
+					<div class="center"><h2 class="white text-center">{{getTitle}}</h2></div>
 				</div>
-
+			
+				<div id="top-info" class="small-2 columns">
+					<a href="#"><div class="right"><i class="fa fa-info-circle white"></i></div></a>
+				</div>
 			</div>
-		</div>
-		
 
-		
 
-		<div id="canvas" class="large-9 medium-8 small-12 columns">
-			<div id="tab-box" class="large-12 show-for-medium-up columns">
-				{{#if isNotHomeView}}
-				<dl class="tabs" data-tab>
-					{{#each tabs}}
-					<dd data-id="{{tabId}}">
-						<div class="notification">
-							<i class="fa fa-exclamation-circle"></i>
+
+				<!--MOBILE SEARCH -->
+
+				<div id="smallSearch" class="small-12 columns show-for-small-only">
+					<div class="row collapse prefix-round">
+						<div class="small-1 columns">
+							<a href="#" class="button prefix"><i class="fa fa-search fa-fw"></i></a>
 						</div>
-						<a href="{{ pathFor 'group' _id=tabId }}">{{tabName}}</a> 
-						{{> closeButton}}
-					</dd>
-					{{/each}}
-				</dl>
-				{{/if}}
-			</div>
 
-			<div class="large-9 medium-12 small-12 columns" style="padding: 0;">
-				<div id="middle">
-					<div id="chatbox">
+						<div class="small-11 columns">
+							<input type="text" placeholder="Search in this group"> 
+						</div>
 
-						<!-- MOBILE TAG SHOW -->
-						<div class="small-12 show-for-small-only columns">
-							<div id="activetag" class="label round tag-active left clearfix">
-								<div class="left">{{getActiveTag}}</div> 
-								<div class="close-button-tag right">
-									<a href=""><i class="fa fa-times"></i></a>
+					</div>
+				</div>
+
+
+
+
+				<div id="canvas" class="large-9 medium-8 small-12 columns">
+					<div id="tab-box" class="large-12 show-for-medium-up columns">
+						{{#if isGroupView}}
+						<dl class="tabs" data-tab>
+							{{#each tabs}}
+							<dd data-id="{{tabId}}">
+								<div class="notification">
+									<i class="fa fa-exclamation-circle"></i>
 								</div>
-							</div> 
-						</div>
-						
-						<!-- GROUP NAME AND TAG -->
-						<header class="large-12 medium-12  columns show-for-medium-up">
-							<div class="large-7 medium-7 columns">
-								<div class="left">
-									<h2 class="left"> 
-										{{getTitle}}
-									</h2>
-									
-									{{#if isNotHomeView}}
-									<div id="activetag" class="label round tag-active clearfix">
-										<div class="left">
-											{{getActiveTag}}
-										</div> 
+								<a href="{{ pathFor 'group' _id=tabId }}">{{tabName}}</a> 
+								{{> closeButton}}
+							</dd>
+							{{/each}}
+						</dl>
+						{{/if}}
+					</div>
+
+					<div class="large-9 medium-12 small-12 columns" style="padding: 0;">
+						<div id="middle">
+							<div id="chatbox">
+
+								<!-- MOBILE TAG SHOW -->
+								<div class="small-12 show-for-small-only columns">
+									<div id="activetag" class="label round tag-active left clearfix">
+										<div class="left">{{getActiveTag}}</div> 
 										<div class="close-button-tag right">
 											<a href=""><i class="fa fa-times"></i></a>
 										</div>
 									</div> 
+								</div>
+
+								<!-- GROUP NAME AND TAG -->
+								<header class="large-12 medium-12  columns show-for-medium-up">
+									<div class="large-7 medium-7 columns">
+										<div class="left">
+											<h2 class="left"> 
+												{{getTitle}}
+											</h2>
+
+											{{#if isActiveTag}}
+											<div id="activetag" class="label round tag-active clearfix">
+												<div class="left">
+													{{getActiveTag}}
+												</div> 
+												<div class="close-button-tag right">
+													<a href="" id="closeActiveTag"><i class="fa fa-times"></i></a>
+												</div>
+											</div> 
+											{{/if}}
+										</div>
+									</div>
+									{{#if isGroupView}}
+
+									<div class="large-5 medium-5 columns">
+										<div class="row collapse right prefix-round">
+											<div class="small-2 columns">
+												<a href="#" class="button prefix"><i class="fa fa-search fa-fw"></i></a>
+											</div>
+
+											<div class="small-10 columns">
+												<input type="text" placeholder="Search in this group"> 
+											</div>
+										</div>
+									</div>
 									{{/if}}
-								</div>
+
+								</header>
+
+								<main class="large-12 medium-12 small-12 columns">
+									<div id="chatwindow" class="large-12 medium-12 small-12 columns">
+										{{> yield}}
+									</div>
+								</main>
+							</div>
+						</div>
+					</div>
+
+
+
+					<div id="chatinfo" class="large-3 small-12 show-for-large-up columns">
+
+
+						<div class="clearfix">
+							<div class="left">
+								<h3><i class="fa fa-info-circle"></i> About</h3>
 							</div>
 
-							<div class="large-5 medium-5 columns">
-								<div class="row collapse right prefix-round">
-									<div class="small-2 columns">
-										<a href="#" class="button prefix"><i class="fa fa-search fa-fw"></i></a>
-									</div>
-
-									<div class="small-10 columns">
-										<input type="text" placeholder="Search in this group"> 
-									</div>
-
-								</div>
+							<div class="right">
+								<a href=""><i class="fa fa-cog"></i></a>
 							</div>
+						</div>
+
+						<p> Group description here. </p>
+
+						<br>
+						<br>
+
+						<div class="clearfix">
+							<div class="left">
+								<h3><i class="fa fa-tags"></i> Tags</h3> 
+							</div>
+
+							<div class="right">
+								<a href="" onclick="addNewTag()"><i class="fa fa-plus"></i></a>
+							</div>
+						</div>
+
+
+				
+					
 							
-
-						</header>
-
-
-						<main class="large-12 medium-12 small-12 columns">
-							<div id="chatwindow" class="large-12 medium-12 small-12 columns">
-								{{> yield}}
+							<div class = "tagsTemplate">
+								
+								{{> tagsTemplate}}
 							</div>
-						</main>
+
+							<br>
+							<br>
+
+							<div class="clearfix">
+								<div class="left">
+									<h3><i class="fa fa-file-text"></i> Files</h3>
+								</div>
+
+								<div class="right">
+									<a href=""><i class="fa fa-plus"></i></a>
+								</div>
+							</div>
+
+
+
+							<br>
+							<br>
+
+							<div class="clearfix">
+								<div class="left">
+									<h3><i class="fa fa-user"></i>Members</h3>
+								</div>
+
+								<div class="right">
+									<a href=""><i class="fa fa-plus"></i></a>
+								</div>
+							</div>
+
+							<ul class="user-list">
+								{{#each users}} <!-- user-active class for active users and user-offline for offline user -->
+								<li><div class="user-active"><i class="fa fa-circle"></i></div>{{userId}}</li>
+								{{/each}}
+							</ul>
+				
 					</div>
 				</div>
 			</div>
-			
+		
+
+				<script src="/js/foundation.min.js"></script>
+				<script>
+					$(document).foundation();
+				</script>
+
+			</template>
+
+			<template name="tagsTemplate">
+				<!-- set tag-active for active tag -->
+				{{#each tags}}
+				<a href=""><span class="label round" data-id="{{this}}">{{this}}</span></a>
+				{{/each}}
+
+			</template>
 
 
-			<div id="chatinfo" class="large-3 small-12 show-for-large-up columns">
+			<template name="closeButton">
+				<div class="close-button-tag right">
+					<a href=""><i class="fa fa-times"></i></a>
+				</div>
+			</template>
 
-
-				<div class="clearfix">
-					<div class="left">
-						<h3><i class="fa fa-info-circle"></i> About</h3>
-					</div>
-
-					<div class="right">
-						<a href=""><i class="fa fa-cog"></i></a>
-					</div>
+			<template name="groupsNavigation">
+				<div class="large-12 medium-12 small-12 columns">
+					<a href="{{ pathFor 'home' }}">
+						<h1 class="white text-center">hatChat</h1>
+					</a> 
 				</div>
 
-				<p> Group description here. </p>
-
-				<br>
-				<br>
-
-				<div class="clearfix">
-					<div class="left">
-						<h3><i class="fa fa-tags"></i> Tags</h3> 
-					</div>
-
-					<div class="right">
-						<a href="" onclick="addNewTag()"><i class="fa fa-plus"></i></a>
-					</div>
-				</div>
-
-
-				<div>
-					{{> tagsTemplate}}
-				</div>
-
-				<br>
-				<br>
-
-				<div class="clearfix">
-					<div class="left">
-						<h3><i class="fa fa-file-text"></i> Files</h3>
-					</div>
-
-					<div class="right">
-						<a href=""><i class="fa fa-plus"></i></a>
-					</div>
+				<div class="large-12 medium-12 small-12 columns text-center">
+					<h5 class="white"> “A modern approach to collaboration” </h5> <hr>
 				</div>
 
 
+				<nav role="navigation">
+					<!-- side bar -->
+					<!--SEARCH -->
+					<div class="large-12 columns">
+						<div class="row collapse prefix-round">
+							<div class="small-2 columns">
+								<a href="#" class="button prefix"><i class="fa fa-search fa-fw"></i></a>
+							</div>
+							<div class="small-10 columns">
+								<input type="text" placeholder="Search for groups and people"> 
+							</div>
 
-				<br>
-				<br>
-
-				<div class="clearfix">
-					<div class="left">
-						<h3><i class="fa fa-user"></i>Members</h3>
+						</div>
+					</div>
+					<div id="myGroups" class="large-12 medium-12 small-12 columns">
+						<h3 class="white">My groups</h3> 
+						{{#each groups}}
+						<li><a href="{{ pathFor 'group' _id=this._id }}"><strong>{{groupName}}</strong></a></li>
+						{{/each}}
 					</div>
 
-					<div class="right">
-						<a href=""><i class="fa fa-plus"></i></a>
+
+					<div class="createNewGroupDiv large-12 medium-12 small-12 columns">
+						<div class="groupInputLabel">
+							<i id="newGroupIcon" class="fa fa-plus white"></i> <strong class="white" id="newGroupLabel"> Create a new group </strong>
+						</div>
+						<div class="groupInputTextBox input-grpu margin-bottom-sm hidden">
+							<span class="input-group-addon"></span>
+							<input id="groupInput" type="text" placeholder="Type new group name .." autofocus="true"> 
+						</div>	
 					</div>
+
+				</nav>
+
+
+			</template>
+
+			<template name="login">
+				login
+				<form id="loginForm">
+					<input id="emailLogin" type="email" placeholder="Email *">
+					<input id="passwordLogin" type="password" placeholder="Password *">
+					<button type="submit">Submit</button>
+				</form>
+
+
+
+				sign up
+				<form id="signupForm">
+					<input id="firstNameSignup" type="text" placeholder="First Name *">
+					<input id="lastNameSignup" type="text" placeholder="Last Name *">
+					<input id="emailSignup" type="email" placeholder="Email *">
+					<input id="passwordSignup" type="password" placeholder="Password *">
+					<input id="passwordSignup2" type="password" placeholder="Repeat Password *">
+					<button type="submit">Submit</button>
+				</form>
+				-- insert promotional text that explains why is hatChat different and why we want to use real identity instead of 10 random letters. be transparent! --
+			</template>
+
+			<template name="group">
+
+				<div class="msgBox">
+					{{> loadMore}}
+					{{> list }}
 				</div>
 
-				<ul class="user-list">
-					{{#each users}} <!-- user-active class for active users and user-offline for offline user -->
-					<li><div class="user-active"><i class="fa fa-circle"></i></div>Anonymous{{userId}}</li>
-					{{/each}}
-				</ul>
-			</div>
-		</div>
-	</div>
+				{{> input }}
+			</template>
 
-	<script src="/js/foundation.min.js"></script>
-	<script>
-		$(document).foundation();
-	</script>
-</template>
-
-<template name="tagsTemplate">
-	<!-- set tag-active for active tag -->
-	{{#each tags}}
-	<a href=""><span class="label round" data-id="{{this}}">{{this}}</span></a>
-	{{/each}}
-	
-</template>
-
-<template name="closeButton">
-	<div class="close-button-tag right">
-		<a href=""><i class="fa fa-times"></i></a>
-	</div>
-</template>
-
-<template name="groupsNavigation">
-	<div class="large-12 medium-12 small-12 columns">
-		<a href="{{ pathFor 'home' }}">
-			<h1 class="white text-center">hatChat</h1>
-		</a> 
-	</div>
-
-	<div class="large-12 medium-12 small-12 columns text-center">
-		<h5 class="white"> “A modern approach to collaboration” </h5> <hr>
-	</div>
-
-	
-	<nav role="navigation">
-		<!-- side bar -->
-		<!--SEARCH -->
-		<div class="large-12 columns">
-			<div class="row collapse prefix-round">
-				<div class="small-2 columns">
-					<a href="#" class="button prefix"><i class="fa fa-search fa-fw"></i></a>
+			<template name="loadMore">
+				<div id="setToCenter" style="text-align: center">
+					{{#if haveMore }}
+					<a href="">Load more ({{ count }}) ...</a>
+					{{/if}}
 				</div>
-				<div class="small-10 columns">
-					<input type="text" placeholder="Search for groups and people"> 
+			</template>
+
+			<template name="list">
+				{{#each messages}}
+				<li><small><var>{{time}}</var></small><strong> {{name}}:</strong> {{> msg}}</li>
+				{{/each}}
+			</template>
+
+			<template name="msg">
+				{{ message }}
+			</template>
+
+			<template name="input">
+				<div id="chatinput">
+					<input id="message" type="text" class="form-control" placeholder="Enter your message..">
 				</div>
+			</template>
 
-			</div>
-		</div>
-		<div id="myGroups" class="large-12 medium-12 small-12 columns">
-			<h3 class="white">My groups</h3> 
-			{{#each groups}}
-			<li><a href="{{ pathFor 'group' _id=this._id }}"><strong>{{groupName}}</strong></a></li>
-			{{/each}}
-		</div>
-
-
-		<div class="createNewGroupDiv large-12 medium-12 small-12 columns">
-			<div class="groupInputLabel">
-				<i id="newGroupIcon" class="fa fa-plus white"></i> <strong class="white" id="newGroupLabel"> Create a new group </strong>
-			</div>
-			<div class="groupInputTextBox input-grpu margin-bottom-sm hidden">
-				<span class="input-group-addon"></span>
-				<input id="groupInput" type="text" placeholder="Type new group name .." autofocus="true"> 
-			</div>	
-		</div>
-
-	</nav>
-
-
-</template>
-
-<template name="group">
-	
-	<div class="msgBox">
-		{{> loadMore}}
-		{{> list }}
-	</div>
-
-	{{> input }}
-</template>
-
-<template name="loadMore">
-	<div id="setToCenter" style="text-align: center">
-		{{#if haveMore }}
-		<a href="">Load more ({{ count }}) ...</a>
-		{{/if}}
-	</div>
-</template>
-
-<template name="list">
-	{{#each messages}}
-	<li><small><var>{{time}}</var></small><strong> {{name}}:</strong> {{> msg}}</li>
-	{{/each}}
-</template>
-
-<template name="msg">
-	{{ message }}
-</template>
-
-<template name="input">
-	<div id="chatinput">
-		<input id="message" type="text" class="form-control" placeholder="Enter your message..">
-	</div>
-</template>
-
-<template name="home">
-	This is home view.
-</template>
+			<template name="home">
+				This is home view.
+			</template>

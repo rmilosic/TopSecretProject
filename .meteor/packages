@@ -6,9 +6,8 @@ standard-app-packages
 insecure
 u2622:persistent-session
 chrismbeckett:fontawesome4
-accounts-facebook
-accounts-google
-accounts-twitter
 accounts-base
-accounts-ui
 iron:router
+accounts-password
+email
+

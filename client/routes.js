@@ -6,7 +6,7 @@
 		layoutTemplate: 'layout'
 	});
 
-	Router.map( function () {
+	Router.map(function () {
 		this.route('group', {
 			path: 'groups/:_id',
 			onBeforeAction: function() {
@@ -52,11 +52,17 @@
 				//var timeNow = new Date();
 				//Groups.update({_id: Session.get('current_room')}, {$set: {last_used: timeNow.getTime()}});	
 			}
-		});
-this.route('home', {
-	path: '/',
-	onBeforeAction: function() {
-		Session.set('currentTitle','Home');
-	}
-});
+		}),
+		this.route('home', {
+			path: '/',
+			onBeforeAction: function() {
+				Session.set('currentTitle','Home');
+			}
+		}),
+		this.route('login', {
+			path: 'login',
+			onBeforeAction: function() {
+				Session.set('currentTitle', 'Login or signup');
+			}
+		})
 });
