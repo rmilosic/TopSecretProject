@@ -47,17 +47,45 @@ Template.layout.events = {
 	};*/
 
 	'click #topbar .left': function() {
-		$('#smallNav').slideToggle('fast')
+		if( $('#largeNav').hasClass('show-for-medium-up') )
+		{
+			$('#largeNav').removeClass('show-for-medium-up');
+		}
+		else {
+			$('#largeNav').addClass('show-for-medium-up');
+		}
+
+		if( $('#chatinfo').hasClass('show-for-large-up') )
+		{
+			
+		}
+		else {
+			$('#chatinfo').addClass('show-for-large-up');
+		}
+
 	},
 
-	'click #smallNav .close-button-nav': function() {
-		$('#smallNav').slideToggle('fast')
-	}
+	'click #topbar .right': function() {
+		if( $('#chatinfo').hasClass('show-for-large-up') )
+		{
+			$('#chatinfo').removeClass('show-for-large-up');
+		}
+		else {
+			$('#chatinfo').addClass('show-for-large-up');
+		}
+	},
 
+	'click #largeNav .close-button-nav': function() {
+		$('#largeNav').addClass('show-for-medium-up');
+	},
+
+	'click #largeNav #myGroups li a': function() {
+		$('#largeNav').addClass('show-for-medium-up');
+	},
 
 	
-
-}
+	}
+	
 
 Template.list.messages = function() {
 	var pages = Session.get('currentPage');
@@ -76,9 +104,9 @@ Template.list.messages = function() {
 		var arrayLength = messages.length;
 		for (var i = 0; i < arrayLength; i++) {
 			console.log(messages[i].tag + " " + Session.get('activeTag'));
-			 if(messages[i].tag==Session.get('activeTag')) {
-			 	filteredMessages[j]=messages[i];
-			 	j++;
+			if(messages[i].tag==Session.get('activeTag')) {
+				filteredMessages[j]=messages[i];
+				j++;
 			}
 		}
 		return filteredMessages;

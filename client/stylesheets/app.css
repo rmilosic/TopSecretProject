@@ -8931,73 +8931,69 @@ th.hide-for-touch {
   margin-bottom: 1rem;
 }
 
+/* line 5, ../../../scss/_menu.scss */
+#largeNav {
+  background: #333333;
+  height: 100vh;
+  box-shadow: 4px 0 3px rgba(51, 51, 51, 0.8);
+  z-index: 999;
+  padding-top: 1.6rem;
+}
+/* line 12, ../../../scss/_menu.scss */
+#largeNav nav {
+  padding-left: 1rem;
+  margin-top: 1.5rem;
+}
+/* line 17, ../../../scss/_menu.scss */
+#largeNav h1 {
+  font-family: 'Ubuntu', sans-serif;
+  color: #008cba;
+  margin-bottom: 1.5rem;
+}
+/* line 22, ../../../scss/_menu.scss */
+#largeNav hr {
+  color: #6D6D6D;
+}
+/* line 26, ../../../scss/_menu.scss */
+#largeNav h4 {
+  font-family: Monospace, sans-serif;
+  color: #8F8F8F;
+  font-size: 1rem;
+}
+
 @media only screen and (min-width: 40.063em) {
-  /* line 7, ../../../scss/_menu.scss */
+  /* line 35, ../../../scss/_menu.scss */
   #smallNav {
     display: none;
   }
-
-  /* line 11, ../../../scss/_menu.scss */
+}
+@media only screen and (max-width: 40em) {
+  /* line 45, ../../../scss/_menu.scss */
   #largeNav {
+    position: absolute;
     background: #333333;
     height: 100vh;
     box-shadow: 4px 0 3px rgba(51, 51, 51, 0.8);
-    z-index: 999;
+    z-index: 1000;
     padding-top: 1.6rem;
   }
-  /* line 18, ../../../scss/_menu.scss */
+  /* line 53, ../../../scss/_menu.scss */
   #largeNav nav {
     padding-left: 1rem;
     margin-top: 1.5rem;
   }
-  /* line 23, ../../../scss/_menu.scss */
+  /* line 58, ../../../scss/_menu.scss */
   #largeNav h1 {
     font-family: 'Ubuntu', sans-serif;
     color: #008cba;
     margin-bottom: 1.5rem;
   }
-  /* line 28, ../../../scss/_menu.scss */
+  /* line 63, ../../../scss/_menu.scss */
   #largeNav hr {
     color: #6D6D6D;
   }
-  /* line 32, ../../../scss/_menu.scss */
+  /* line 67, ../../../scss/_menu.scss */
   #largeNav h4 {
-    font-family: Monospace, sans-serif;
-    color: #8F8F8F;
-    font-size: 1rem;
-  }
-}
-@media only screen and (max-width: 40em) {
-  /* line 42, ../../../scss/_menu.scss */
-  #smallNav {
-    padding-top: 1.6rem;
-    position: absolute;
-    z-index: 999;
-    background: #333333;
-    height: 100vh;
-    width: 100vw;
-    display: none;
-  }
-  /* line 52, ../../../scss/_menu.scss */
-  #smallNav i.fa-times {
-    font-size: 2rem;
-  }
-  /* line 55, ../../../scss/_menu.scss */
-  #smallNav nav {
-    padding-left: 1rem;
-  }
-  /* line 59, ../../../scss/_menu.scss */
-  #smallNav h1 {
-    font-family: 'Ubuntu', sans-serif;
-    color: #008cba;
-    margin-bottom: 1.5rem;
-  }
-  /* line 64, ../../../scss/_menu.scss */
-  #smallNav hr {
-    color: #6D6D6D;
-  }
-  /* line 68, ../../../scss/_menu.scss */
-  #smallNav h4 {
     font-family: Monospace, sans-serif;
     color: #8F8F8F;
     font-size: 1rem;
@@ -9015,39 +9011,43 @@ th.hide-for-touch {
   }
   /* line 83, ../../../scss/_menu.scss */
   #topbar h2 {
-    padding-top: 0.4rem;
+    padding-top: 0.7rem;
   }
   /* line 86, ../../../scss/_menu.scss */
-  #topbar i.fa-bars {
+  #topbar i {
     font-size: 2rem;
   }
   /* line 89, ../../../scss/_menu.scss */
-  #topbar .left {
+  #topbar .left, #topbar .right {
     margin-top: 0.5rem;
     padding: 0.5rem 0.8rem 0.5rem 0.8rem;
     border-radius: 0.5rem;
   }
   /* line 94, ../../../scss/_menu.scss */
-  #topbar a:hover .left {
+  #topbar #top-button a:hover .left {
+    background: #545454;
+  }
+  /* line 98, ../../../scss/_menu.scss */
+  #topbar #top-info a:hover .right {
     background: #545454;
   }
 
-  /* line 100, ../../../scss/_menu.scss */
+  /* line 104, ../../../scss/_menu.scss */
   .close-button-smallNav {
     display: visible;
   }
-  /* line 103, ../../../scss/_menu.scss */
+  /* line 107, ../../../scss/_menu.scss */
   .close-button-smallNav a {
     color: white;
     display: inline;
   }
 
-  /* line 109, ../../../scss/_menu.scss */
+  /* line 113, ../../../scss/_menu.scss */
   #activetag {
     padding-top: 0.5rem;
     height: 2rem;
   }
-  /* line 112, ../../../scss/_menu.scss */
+  /* line 116, ../../../scss/_menu.scss */
   #activetag .left {
     margin-right: 0.5rem;
   }
@@ -9106,41 +9106,41 @@ html, body {
     display: block;
   }
 }
-/* line 46, ../../../scss/_largeScreen.scss */
+/* line 44, ../../../scss/_largeScreen.scss */
 li {
   list-style-type: none;
 }
-/* line 49, ../../../scss/_largeScreen.scss */
+/* line 47, ../../../scss/_largeScreen.scss */
 li .user-active {
   font-size: 1rem;
   color: #43ac6a;
   float: left;
   padding-right: 0.2rem;
 }
-/* line 55, ../../../scss/_largeScreen.scss */
+/* line 53, ../../../scss/_largeScreen.scss */
 li .user-offline {
   font-size: 1rem;
   float: left;
   padding-right: 0.2rem;
 }
 
-/* line 62, ../../../scss/_largeScreen.scss */
+/* line 60, ../../../scss/_largeScreen.scss */
 ul {
   margin: 0;
 }
 
-/* line 66, ../../../scss/_largeScreen.scss */
+/* line 64, ../../../scss/_largeScreen.scss */
 #canvas {
   padding: 0;
 }
 
-/* line 69, ../../../scss/_largeScreen.scss */
+/* line 67, ../../../scss/_largeScreen.scss */
 #tab-box {
   background-color: #C8C8C8;
   padding-left: 1rem;
 }
 
-/* line 76, ../../../scss/_largeScreen.scss */
+/* line 74, ../../../scss/_largeScreen.scss */
 .close-button, .close-button-tab, .close-button-tag, .close-button-smallnav {
   position: absolute;
   top: 0.3rem;
@@ -9151,16 +9151,16 @@ ul {
   z-index: 999;
 }
 
-/* line 97, ../../../scss/_largeScreen.scss */
+/* line 95, ../../../scss/_largeScreen.scss */
 .tabs dd {
   position: relative;
 }
-/* line 101, ../../../scss/_largeScreen.scss */
+/* line 99, ../../../scss/_largeScreen.scss */
 .tabs dd a {
   border-top-right-radius: 0.625rem;
   border-top-left-radius: 0.625rem;
 }
-/* line 106, ../../../scss/_largeScreen.scss */
+/* line 104, ../../../scss/_largeScreen.scss */
 .tabs dd .notification {
   position: absolute;
   color: #008cba;
@@ -9170,25 +9170,25 @@ ul {
   color: tray;
   font-size: 1.3rem;
 }
-/* line 117, ../../../scss/_largeScreen.scss */
+/* line 115, ../../../scss/_largeScreen.scss */
 .tabs dd:hover .close-button, .tabs dd:hover .close-button-tab, .tabs dd:hover .close-button-tag, .tabs dd:hover .close-button-smallnav {
   display: block;
 }
-/* line 120, ../../../scss/_largeScreen.scss */
+/* line 118, ../../../scss/_largeScreen.scss */
 .tabs dd:hover .notification {
   display: block;
 }
-/* line 123, ../../../scss/_largeScreen.scss */
+/* line 121, ../../../scss/_largeScreen.scss */
 .tabs dd.active {
   z-index: 100;
   position: relative;
 }
 
-/* line 133, ../../../scss/_largeScreen.scss */
+/* line 131, ../../../scss/_largeScreen.scss */
 #chatbox {
   background-color: #F5F5F5;
 }
-/* line 137, ../../../scss/_largeScreen.scss */
+/* line 136, ../../../scss/_largeScreen.scss */
 #chatbox #chatbox::before {
   box-shadow: -10px 0 15px -15px inset;
   content: " ";
@@ -9198,7 +9198,7 @@ ul {
   top: 1;
   width: 10px;
 }
-/* line 147, ../../../scss/_largeScreen.scss */
+/* line 146, ../../../scss/_largeScreen.scss */
 #chatbox #chatbox::after {
   box-shadow: 15px 0 15px -15px inset;
   content: " ";
@@ -9208,29 +9208,29 @@ ul {
   right: -15px;
   width: 15px;
 }
-/* line 158, ../../../scss/_largeScreen.scss */
+/* line 157, ../../../scss/_largeScreen.scss */
 #chatbox #chatwindow {
   padding: 1rem 0rem 0 0.5rem;
 }
-/* line 162, ../../../scss/_largeScreen.scss */
+/* line 161, ../../../scss/_largeScreen.scss */
 #chatbox header {
   padding-left: 1.5rem;
   padding-top: 1.5rem;
   border-bottom: 0.07rem #B5B9B9 solid;
   box-shadow-bottom: 0rem -0.5rem 0.3rem #383931;
 }
-/* line 168, ../../../scss/_largeScreen.scss */
+/* line 167, ../../../scss/_largeScreen.scss */
 #chatbox header h2 {
   padding: 0;
   margin: 0;
 }
-/* line 175, ../../../scss/_largeScreen.scss */
+/* line 174, ../../../scss/_largeScreen.scss */
 #chatbox header a {
   color: white;
   display: block;
 }
 
-/* line 184, ../../../scss/_largeScreen.scss */
+/* line 183, ../../../scss/_largeScreen.scss */
 .msgBox {
   height: 77vh;
   position: relative;
@@ -9238,28 +9238,13 @@ ul {
   overflow-x: hidden;
 }
 
-/* line 191, ../../../scss/_largeScreen.scss */
+/* line 190, ../../../scss/_largeScreen.scss */
 #chatinput {
   padding: 0;
   margin: 0;
 }
 
-/* line 196, ../../../scss/_largeScreen.scss */
-#chatinfo {
-  background-color: whitesmoke;
-  height: 90vh;
-  padding: 2rem 4rem 0rem 1rem;
-}
-/* line 201, ../../../scss/_largeScreen.scss */
-#chatinfo a {
-  color: #222222;
-}
-/* line 205, ../../../scss/_largeScreen.scss */
-#chatinfo .right {
-  padding-top: 0.5rem;
-}
-
-/* line 210, ../../../scss/_largeScreen.scss */
+/* line 198, ../../../scss/_largeScreen.scss */
 .fullWidth {
   width: 100vw;
   margin-left: auto;
@@ -9267,7 +9252,7 @@ ul {
   max-width: initial;
 }
 
-/* line 217, ../../../scss/_largeScreen.scss */
+/* line 205, ../../../scss/_largeScreen.scss */
 footer {
   background-color: #3c3e3c;
   height: 10rem;
@@ -9289,4 +9274,47 @@ footer {
 /* line 1, ../../../scss/_header.scss */
 #topheader {
   background-color: #008cba;
+}
+
+@media only screen and (min-width: 64.063em) {
+  /* line 2, ../../../scss/_chatinfo.scss */
+  #chatinfo {
+    background-color: whitesmoke;
+    height: 90vh;
+    padding: 2rem 4rem 0rem 1rem;
+  }
+  /* line 7, ../../../scss/_chatinfo.scss */
+  #chatinfo a {
+    color: #222222;
+  }
+  /* line 11, ../../../scss/_chatinfo.scss */
+  #chatinfo .right {
+    padding-top: 0.5rem;
+  }
+}
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+  /* line 18, ../../../scss/_chatinfo.scss */
+  #chatinfo {
+    display: none;
+  }
+}
+@media only screen and (max-width: 40em) {
+  /* line 23, ../../../scss/_chatinfo.scss */
+  #chatinfo {
+    padding-top: 2.5rem;
+    position: absolute;
+    z-index: 99;
+    background: whitesmoke;
+    height: 90vh;
+    width: 100vw;
+    top: -6vh;
+  }
+  /* line 35, ../../../scss/_chatinfo.scss */
+  #chatinfo a {
+    color: #222222;
+  }
+  /* line 39, ../../../scss/_chatinfo.scss */
+  #chatinfo .right {
+    padding-top: 0.5rem;
+  }
 }

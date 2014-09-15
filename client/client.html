@@ -4,15 +4,24 @@
 	<head>
 		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 		<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+
+		<script src="/js/vendor/modernizr.js"></script>
+		<script src="/js/vendor/fastclick.js"></script>
 	</head>
 	
 	
 	<div class="row fullWidth">
 
-		<div id="largeNav" class="large-3 medium-4 show-for-medium-up columns">
+		<div id="largeNav" class="large-3 medium-4 small-12 show-for-medium-up columns">
 
-			{{> loginButtons}}
-
+			<div class="small-3 columns left">
+				{{> loginButtons}}
+			</div>
+			<div class="small-3 show-for-small-only columns small-offset-6">
+				<div class="close-button-nav">
+					<a href=""><i class="fa fa-times white right"></i></a>
+				</div>
+			</div>
 
 			{{> groupsNavigation}}
 
@@ -20,30 +29,17 @@
 
 		<!-- MOBILE TOPBAR -->
 		<div id="topbar" class="small-12 columns show-for-small-only">
-			<div class="small-3 columns">
+			<div id="top-button" class="small-2 columns">
 				<a href="#"><div class="left"><i class="fa fa-bars white"></i></div></a>
 			</div>
-			<div class="small-9 columns">
+			<div class="small-7 columns">
 				<div class="center"><h2 class="white text-center">{{getTitle}}</h2></div>
 			</div>
-		</div>
-			
-
-		<!-- MOBILE NAV -->
-		<div id="smallNav" class="small-12 columns">
-			<div class="small-3 columns left">
-				{{> loginButtons}}
+			<div id="top-info" class="small-2 columns">
+				<a href="#"><div class="right"><i class="fa fa-info-circle white"></i></div></a>
 			</div>
-			<div class="small-3 columns small-offset-6">
-				<div class="close-button-nav">
-					<a href=""><i class="fa fa-times white right"></i></a>
-				</div>
-			</div>
-
-
-			{{> groupsNavigation}}
-
 		</div>
+
 
 		<!--MOBILE SEARCH -->
 
@@ -140,9 +136,10 @@
 					</div>
 				</div>
 			</div>
+			
 
 
-			<div id="chatinfo" class="large-3 show-for-large-up columns">
+			<div id="chatinfo" class="large-3 small-12 show-for-large-up columns">
 
 
 				<div class="clearfix">
@@ -172,7 +169,7 @@
 
 
 				<div>
-				{{> tagsTemplate}}
+					{{> tagsTemplate}}
 				</div>
 
 				<br>
@@ -212,14 +209,17 @@
 		</div>
 	</div>
 
-
+	<script src="/js/foundation.min.js"></script>
+	<script>
+		$(document).foundation();
+	</script>
 </template>
 
 <template name="tagsTemplate">
-	 <!-- set tag-active for active tag -->
-		{{#each tags}}
-		<a href=""><span class="label round" data-id="{{this}}">{{this}}</span></a>
-		{{/each}}
+	<!-- set tag-active for active tag -->
+	{{#each tags}}
+	<a href=""><span class="label round" data-id="{{this}}">{{this}}</span></a>
+	{{/each}}
 	
 </template>
 
