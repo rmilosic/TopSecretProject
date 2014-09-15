@@ -23,3 +23,7 @@ Meteor.setInterval(function () {
   var now = (new Date()).getTime();
   Connections.remove({'lastSeen': {$lt: (now - 1 * 5000)}});
 }, 1000);
+
+Accounts.config({
+  sendVerificationEmail: true,
+});
