@@ -6,13 +6,17 @@
 		<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
 	</head>
 	
-	
+
 	<div class="row fullWidth">
 
 		<div id="largeNav" class="large-3 medium-4 show-for-medium-up columns">
 
-			{{> loginButtons}}
-
+			{{#if currentUser}}
+			<h5 class="white text-left">{{currentUser.profile.firstName}} {{currentUser.profile.lastName}}</h5>
+			<a href="" id="logout"> Logout</a>
+			{{else}}
+			<a href="{{ pathFor 'login' }}">> Sign in</a>
+			{{/if}}
 
 			{{> groupsNavigation}}
 
@@ -27,12 +31,16 @@
 				<div class="center"><h2 class="white text-center">{{getTitle}}</h2></div>
 			</div>
 		</div>
-			
+
 
 		<!-- MOBILE NAV -->
 		<div id="smallNav" class="small-12 columns">
 			<div class="small-3 columns left">
-				{{> loginButtons}}
+				{{#if currentUser}}
+				<h5 class="white text-left">{{currentUser.profile.firstName}} {{currentUser.profile.lastName}}</h5>
+				{{else}}
+				<a href="{{ pathFor 'login' }}">> Sign in</a>
+				{{/if}}
 			</div>
 			<div class="small-3 columns small-offset-6">
 				<div class="close-button-nav">
@@ -59,13 +67,13 @@
 
 			</div>
 		</div>
-		
 
-		
+
+
 
 		<div id="canvas" class="large-9 medium-8 small-12 columns">
 			<div id="tab-box" class="large-12 show-for-medium-up columns">
-				{{#if isNotHomeView}}
+				{{#if isGroupView}}
 				<dl class="tabs" data-tab>
 					{{#each tabs}}
 					<dd data-id="{{tabId}}">
@@ -93,7 +101,7 @@
 								</div>
 							</div> 
 						</div>
-						
+
 						<!-- GROUP NAME AND TAG -->
 						<header class="large-12 medium-12  columns show-for-medium-up">
 							<div class="large-7 medium-7 columns">
@@ -101,19 +109,20 @@
 									<h2 class="left"> 
 										{{getTitle}}
 									</h2>
-									
-									{{#if isNotHomeView}}
+
+									{{#if isActiveTag}}
 									<div id="activetag" class="label round tag-active clearfix">
 										<div class="left">
 											{{getActiveTag}}
 										</div> 
 										<div class="close-button-tag right">
-											<a href=""><i class="fa fa-times"></i></a>
+											<a href="" id="closeActiveTag"><i class="fa fa-times"></i></a>
 										</div>
 									</div> 
 									{{/if}}
 								</div>
 							</div>
+							{{#if isGroupView}}
 
 							<div class="large-5 medium-5 columns">
 								<div class="row collapse right prefix-round">
@@ -124,13 +133,11 @@
 									<div class="small-10 columns">
 										<input type="text" placeholder="Search in this group"> 
 									</div>
-
 								</div>
 							</div>
-							
+							{{/if}}
 
 						</header>
-
 
 						<main class="large-12 medium-12 small-12 columns">
 							<div id="chatwindow" class="large-12 medium-12 small-12 columns">
@@ -171,8 +178,8 @@
 				</div>
 
 
-				<div>
-				{{> tagsTemplate}}
+				<div class = "tagsTemplate">
+					{{> tagsTemplate}}
 				</div>
 
 				<br>
@@ -205,22 +212,18 @@
 
 				<ul class="user-list">
 					{{#each users}} <!-- user-active class for active users and user-offline for offline user -->
-					<li><div class="user-active"><i class="fa fa-circle"></i></div>Anonymous{{userId}}</li>
+					<li><div class="user-active"><i class="fa fa-circle"></i></div>{{userId}}</li>
 					{{/each}}
 				</ul>
 			</div>
 		</div>
 	</div>
-
-
 </template>
 
 <template name="tagsTemplate">
-	 <!-- set tag-active for active tag -->
-		{{#each tags}}
-		<a href=""><span class="label round" data-id="{{this}}">{{this}}</span></a>
-		{{/each}}
-	
+	{{#each tags}}
+	<a href=""><span class="label round" data-id="{{this}}">{{this}}</span></a>
+	{{/each}}
 </template>
 
 <template name="closeButton">
@@ -276,6 +279,28 @@
 	</nav>
 
 
+</template>
+
+<template name="login">
+	login
+	<form id="loginForm">
+		<input id="emailLogin" type="email" placeholder="Email *">
+		<input id="passwordLogin" type="password" placeholder="Password *">
+		<button type="submit">Submit</button>
+	</form>
+	
+
+
+	sign up
+	<form id="signupForm">
+		<input id="firstNameSignup" type="text" placeholder="First Name *">
+		<input id="lastNameSignup" type="text" placeholder="Last Name *">
+		<input id="emailSignup" type="email" placeholder="Email *">
+		<input id="passwordSignup" type="password" placeholder="Password *">
+		<input id="passwordSignup2" type="password" placeholder="Repeat Password *">
+		<button type="submit">Submit</button>
+	</form>
+	-- insert promotional text that explains why is hatChat different and why we want to use real identity instead of 10 random letters. be transparent! --
 </template>
 
 <template name="group">

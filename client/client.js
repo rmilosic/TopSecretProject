@@ -26,20 +26,23 @@ Meteor.startup(function() {
 	
 
 	Meteor.subscribe('currentGroups');
+
 	Meteor.subscribe('currentConnections', function() {
-		if(Session.get('currentUser')==undefined)
-		{
-			var set = true;
-			while(set)
-			{
-				var tmp = Math.floor(Math.random()*1000+1);
-				if(Connections.find({"userId": tmp}).count()==0)
+		if(Session.get('currentUser')==undefined) {
+			if(Meteor.user()) {
+				Session.set('currentUser', Meteor.user().profile.firstName + " " + Meteor.user().profile.lastName);
+			} else {
+				var set = true;
+				while(set)
 				{
-					Session.set('currentUser',tmp);
-					set = false;
+					var tmp = Math.floor(Math.random()*1000+1);
+					if(Connections.find({"userId": tmp}).count()==0)
+					{
+						Session.set('currentUser',"Anonymous"+tmp);
+						set = false;
+					}
 				}
 			}
-
 		}
 	});
 });

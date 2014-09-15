@@ -2,10 +2,54 @@
 * Templates
 */
 
+Template.login.events = {
+	'submit #loginForm': function(event, template) {
+		event.preventDefault();
+		var email  = template.find('#emailLogin').value;
+		var password = template.find('#passwordLogin').value;
+		Meteor.loginWithPassword(email, password, function(error) {
+			if(error) {
+				console.log("login failed");
+			} else {
+				Session.set('currentUser', Meteor.user().profile.firstName + " " + Meteor.user().profile.lastName);
+				Router.go('home');
+			}
+		});
+	},
+
+	'submit #signupForm': function(event, template) {
+		event.preventDefault();
+		var email  = template.find('#emailSignup').value;
+		var password = template.find('#passwordSignup').value;
+		var password2 = template.find('#passwordSignup2').value;
+		var firstName = template.find('#firstNameSignup').value;
+		var lastName = template.find('#lastNameSignup').value;
+
+		if(password==password2) {
+			Accounts.createUser({
+				email:    email,
+				password: password,
+				profile: {
+					firstName: firstName,
+					lastName: lastName
+				}}, function(error) {
+					if(error) {
+						console.log("login failed");
+					} else {
+						Session.set('currentUser', firstName + " " + lastName);
+						Router.go('home');
+					}
+				});
+		} else {
+			console.log("Passwords do not match, signup failed!");
+		}
+	}
+}
+
 Template.tagsTemplate.events = {
 	'click ': function(event) {
 		data = $(event.target).attr('data-id');
-		$(".two-columns .label.round.tag-active").removeClass("tag-active");
+		$(".tagsTemplate .label.round.tag-active").removeClass("tag-active");
 		$(event.target).addClass("tag-active");
 		Session.set('activeTag',data);
 	}
@@ -17,8 +61,11 @@ Template.tagsTemplate.tags = function() {
 }
 
 Template.layout.getActiveTag = function() {
-	var activeTag = Session.get('activeTag');
-	return activeTag != null ? activeTag : "No active tag.";
+	return Session.get('activeTag');
+}
+
+Template.layout.isActiveTag = function() {
+	return Session.get('activeTag') != null ? true : false;
 }
 
 
@@ -30,12 +77,73 @@ Template.layout.getGroup = function() {
 	return tmp;
 }
 
+Template.layout.isGroupView = function() {
+	return Router.current().path.lastIndexOf('/groups', 0) == 0? true : false;
+}
+
 Template.layout.isNotHomeView = function() {
 	return Router.current().path != '/' ? true : false;
 }
 
-Template.layout.events = {
-	/*'click': function(e) {
+Template.layout.rendered = function() {
+        // Assuming you're using jQuery 
+        $('body').on('keydown',function(event) { 
+        	if(event.shiftKey==true && event.keyCode=='9') {
+        		event.preventDefault();
+
+        		var currentTab=-1;
+        		var currentOpenTabs = Session.get('currentTabs');
+        		var len = currentOpenTabs.length;
+        		for (var i=0; i<len; ++i) {
+        			if (i in currentOpenTabs) {
+        				var s = currentOpenTabs[i];
+        				if(s.tabId == Router.current().path.substring(Router.current().path.indexOf("groups")+7, Router.current().path.length)) {
+        					currentTab = i;
+        				}
+        			}
+        		}
+        		if(currentTab!=-1) {
+        			if(currentTab==len-1)
+        				Router.go('group',{_id: currentOpenTabs[0].tabId});
+        			else
+        				Router.go('group',{_id: currentOpenTabs[currentTab+1].tabId});
+        		}
+
+        	}
+        }); 
+    }
+
+    Template.layout.events = {
+
+    	'click #logout': function() {
+    		var set = true;
+    		while(set)
+    		{
+    			var tmp = Math.floor(Math.random()*1000+1);
+    			if(Connections.find({"userId": tmp}).count()==0)
+    			{
+    				Session.set('currentUser',"Anonymous"+tmp);
+    				set = false;
+    			}
+    		}
+    		Meteor.logout();
+    	},
+
+    	'click #topbar .left': function() {
+    		$('#smallNav').slideToggle('fast');
+    	},
+
+    	'click #smallNav .close-button-nav': function() {
+    		$('#smallNav').slideToggle('fast');
+    	},
+
+	// Catching clicks outside createNewGroupDiv, used to hide new group input. Function must be last in layout.events so it doesn't override other clicks.
+	'click #closeActiveTag': function() {
+		$(".tagsTemplate .label.round.tag-active").removeClass("tag-active");
+		Session.set('activeTag',null);
+	},
+
+	'click': function(e) {
 		var container = $(".createNewGroupDiv");
 		if (!container.is(e.target) && container.has(e.target).length === 0) {
 			var createNewGroupLabel = $(".groupInputLabel");
@@ -44,19 +152,7 @@ Template.layout.events = {
 			var createNewGroupInput = $(".groupInputTextBox");
 			createNewGroupInput.addClass("hidden");
 		}
-	};*/
-
-	'click #topbar .left': function() {
-		$('#smallNav').slideToggle('fast')
-	},
-
-	'click #smallNav .close-button-nav': function() {
-		$('#smallNav').slideToggle('fast')
 	}
-
-
-	
-
 }
 
 Template.list.messages = function() {
@@ -76,9 +172,9 @@ Template.list.messages = function() {
 		var arrayLength = messages.length;
 		for (var i = 0; i < arrayLength; i++) {
 			console.log(messages[i].tag + " " + Session.get('activeTag'));
-			 if(messages[i].tag==Session.get('activeTag')) {
-			 	filteredMessages[j]=messages[i];
-			 	j++;
+			if(messages[i].tag==Session.get('activeTag')) {
+				filteredMessages[j]=messages[i];
+				j++;
 			}
 		}
 		return filteredMessages;
@@ -232,15 +328,8 @@ Template.input.events = {
 
 		if(event.which == 13) {
 
-			var anonUser=0;
+			var name = Session.get('currentUser');
 
-			if(Meteor.user())
-				var name = Meteor.user().profile.name;
-			else
-			{
-				var name= 'Anonymous' + Session.get('currentUser');
-				anonUser=1;
-			}
 			var message = document.getElementById('message');
 			var tag = Session.get("activeTag");
 
